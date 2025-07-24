@@ -20,7 +20,7 @@ const App = {
           color: '#6d4c1b',
           fontSize: '1.1rem',
         }
-      }, 'Chatbot UI will appear here (Phase 0)')
+      }, 'Hello there!')
     ]);
   }
 };
