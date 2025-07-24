@@ -1,2 +1,3 @@
 # omni_rebuild
-a rebuilding of project_omni
+
+a rebuild of project-omnibus using LangChain and RAG
