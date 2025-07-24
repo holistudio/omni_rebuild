@@ -1,2 +1,28 @@
-# Auto detect text files and perform LF normalization
+# Set default behavior to automatically normalize line endings
 * text=auto
+
+# Python
+*.py linguist-language=Python
+
+# Vue.js
+*.vue linguist-language=Vue
+
+# Markdown
+*.md text
+
+# JSON
+*.json text
+
+# Shell scripts
+*.sh text eol=lf
+
+# Treat lock files as text
+package-lock.json text
+yarn.lock text
+
+# Exclude binaries from diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
