@@ -12,10 +12,13 @@
  - [x] Chatbot always asks the same list of 10 questions in the same order everytime
  - [x] At the end of the 10 questions, the entire conversation log is saved in the back end.
  - [x] A search prompt is created.
- - [ ] Set up a Google Books API.
- - [ ] Search prompt fed into Google Books API. 
- - [ ] The search results are displayed back to the user as a grid of book cover images on a bookshelf.
- - [ ] Users can click on each book cover image to expand and show title, author, and synopsis.
+ - [x] Set up a Google Books API.
+ - [x] Search prompt fed into Google Books API. 
+ - [x] The search results are displayed back to the user as a grid of book cover images on a bookshelf.
+ - [x] Users can click on each book cover image to expand and show title, author, and synopsis.
+ - [ ] UI: Chatbot interface on left half 50% of the screen
+ - [ ] UI: Book recomendations on left half 50% of the screen
+ - [ ] UI: Right half of the screen displays title, author, synopsis when user clicks on book thumbnail.
 
 ## Phase 2: LangChain and RAG
 
