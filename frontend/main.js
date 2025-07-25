@@ -8,7 +8,7 @@ const App = {
   },
   render() {
     return h('div', [
-      h('h1', 'OmniRebuild Chatbot'),
+      h('h1', 'Omni'),
       h('div', {
         style: {
           background: '#fbe9c6',
