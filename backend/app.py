@@ -107,6 +107,10 @@ def search_books():
                 'thumbnail': volume.get('imageLinks', {}).get('thumbnail'),
                 'infoLink': volume.get('infoLink')
             })
+        # Write results to search_results.json
+        results_path = os.path.join(backend_dir, 'search_results.json')
+        with open(results_path, 'w', encoding='utf-8') as rf:
+            json.dump(books, rf, ensure_ascii=False, indent=2)
         return jsonify({'books': books})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
