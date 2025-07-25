@@ -62,6 +62,8 @@ const App = {
         } catch (err) {
           // Ignore backend errors for now
         }
+        // Move index past last question to trigger final message
+        currentQuestionIndex.value++;
       }
     };
 
@@ -102,7 +104,9 @@ const App = {
         },
           this.loading ? 'Loading questions...' :
           this.error ? this.error :
-          (this.questions[this.currentQuestionIndex] || 'No questions available.')
+          (this.currentQuestionIndex >= this.questions.length ? 
+            'Hmm, let me see...here are some books you might like!' :
+            (this.questions[this.currentQuestionIndex] || 'No questions available.'))
         ),
         h('form', {
           style: {
