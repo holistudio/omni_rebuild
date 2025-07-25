@@ -97,12 +97,12 @@ const App = {
           },
           onSubmit: this.handleInput
         }, [
-          h('input', {
-            type: 'text',
+          h('textarea', {
             placeholder: 'Type your answer...',
             style: {
               flex: 1,
               maxWidth: '260px',
+              minHeight: '60px',
               padding: '0.75rem 1rem',
               borderRadius: '8px',
               border: '1px solid #e0cfa6',
@@ -112,6 +112,7 @@ const App = {
               boxShadow: '0 1px 4px rgba(124, 74, 3, 0.04)',
               outline: 'none',
               textAlign: 'center',
+              resize: 'vertical',
             },
             value: this.userInput,
             onInput: e => { this.userInput = e.target.value; },
