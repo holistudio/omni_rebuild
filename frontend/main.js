@@ -36,10 +36,18 @@ const App = {
     const handleInput = (e) => {
       e.preventDefault();
       if (!userInput.value.trim()) return;
-      answers.value.push({
+      const logEntry = {
+        q_index: currentQuestionIndex.value,
         question: questions.value[currentQuestionIndex.value],
-        answer: userInput.value
-      });
+        response: userInput.value
+      };
+      answers.value.push(logEntry);
+      // Save to localStorage
+      try {
+        localStorage.setItem('omni_conversation', JSON.stringify(answers.value));
+      } catch (err) {
+        // Ignore localStorage errors
+      }
       userInput.value = '';
       if (currentQuestionIndex.value < questions.value.length - 1) {
         currentQuestionIndex.value++;
