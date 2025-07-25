@@ -33,7 +33,7 @@ const App = {
     onMounted(fetchQuestions);
 
     // Handle user input submit
-    const handleInput = (e) => {
+    const handleInput = async (e) => {
       e.preventDefault();
       if (!userInput.value.trim()) return;
       const logEntry = {
@@ -51,6 +51,17 @@ const App = {
       userInput.value = '';
       if (currentQuestionIndex.value < questions.value.length - 1) {
         currentQuestionIndex.value++;
+      } else {
+        // After last question, send conversation to backend
+        try {
+          await fetch(`${BACKEND_URL}/save_conversation`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ conversation: answers.value })
+          });
+        } catch (err) {
+          // Ignore backend errors for now
+        }
       }
     };
 

@@ -1,6 +1,8 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import psycopg2
+import os
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -30,6 +32,21 @@ def get_questions():
     cur.close()
     conn.close()
     return jsonify({"questions": questions})
+
+@app.route('/save_conversation', methods=['POST'])
+def save_conversation():
+    data = request.get_json()
+    if not data or 'conversation' not in data:
+        return jsonify({'error': 'No conversation data provided'}), 400
+    conversation = data['conversation']
+    backend_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(backend_dir, 'conversation.json')
+    try:
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(conversation, f, ensure_ascii=False, indent=2)
+        return jsonify({'status': 'success'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True) 
