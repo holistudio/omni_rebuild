@@ -1,10 +1,52 @@
-import { createApp, h, ref } from 'vue';
+import { createApp, h, ref, onMounted } from 'vue';
+
+const BACKEND_URL = 'http://localhost:5000';
 
 const App = {
   name: 'App',
   setup() {
     const userInput = ref('');
-    return { userInput };
+    const questions = ref([]);
+    const currentQuestionIndex = ref(0);
+    const loading = ref(true);
+    const error = ref(null);
+    const answers = ref([]);
+
+    // Fetch questions from backend only
+    const fetchQuestions = async () => {
+      loading.value = true;
+      try {
+        const res = await fetch(`${BACKEND_URL}/questions`);
+        const data = await res.json();
+        questions.value = data.questions || [];
+        currentQuestionIndex.value = 0;
+        loading.value = false;
+        if (!questions.value.length) {
+          error.value = 'No questions available from the database.';
+        }
+      } catch (e) {
+        error.value = 'Failed to load questions from the backend.';
+        loading.value = false;
+      }
+    };
+
+    onMounted(fetchQuestions);
+
+    // Handle user input submit
+    const handleInput = (e) => {
+      e.preventDefault();
+      if (!userInput.value.trim()) return;
+      answers.value.push({
+        question: questions.value[currentQuestionIndex.value],
+        answer: userInput.value
+      });
+      userInput.value = '';
+      if (currentQuestionIndex.value < questions.value.length - 1) {
+        currentQuestionIndex.value++;
+      }
+    };
+
+    return { userInput, questions, currentQuestionIndex, loading, error, handleInput };
   },
   render() {
     return h('div', [
@@ -15,13 +57,14 @@ const App = {
           borderRadius: '12px',
           padding: '2rem',
           marginTop: '1rem',
-          minHeight: '200px',
+          minHeight: '300px',
           width: '100%',
-          boxShadow: '0 2px 12px rgba(124, 74, 3, 0.08)',
+          maxWidth: '420px',
+          boxShadow: '0 4px 32px rgba(80, 60, 20, 0.12)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           color: '#6d4c1b',
           fontSize: '1.1rem',
           position: 'relative',
@@ -34,30 +77,61 @@ const App = {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: '2.5rem',
+            minHeight: '60px',
+            textAlign: 'center',
           }
-        }, 'Hello there!'),
-        h('input', {
-          type: 'text',
-          placeholder: 'Type your message...',
+        },
+          this.loading ? 'Loading questions...' :
+          this.error ? this.error :
+          (this.questions[this.currentQuestionIndex] || 'No questions available.')
+        ),
+        h('form', {
           style: {
-            position: 'absolute',
-            bottom: '1.5rem',
-            left: '2rem',
-            right: '2rem',
-            width: 'calc(100% - 4rem)',
-            padding: '0.75rem 1rem',
-            borderRadius: '8px',
-            border: '1px solid #e0cfa6',
-            background: '#fffbe9',
-            color: '#6d4c1b',
-            fontSize: '1rem',
-            boxShadow: '0 1px 4px rgba(124, 74, 3, 0.04)',
-            outline: 'none',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '0.5rem',
+            marginTop: '2rem',
           },
-          value: this.userInput,
-          onInput: e => { this.userInput = e.target.value; }
-        })
+          onSubmit: this.handleInput
+        }, [
+          h('input', {
+            type: 'text',
+            placeholder: 'Type your answer...',
+            style: {
+              flex: 1,
+              maxWidth: '260px',
+              padding: '0.75rem 1rem',
+              borderRadius: '8px',
+              border: '1px solid #e0cfa6',
+              background: '#fffbe9',
+              color: '#6d4c1b',
+              fontSize: '1rem',
+              boxShadow: '0 1px 4px rgba(124, 74, 3, 0.04)',
+              outline: 'none',
+              textAlign: 'center',
+            },
+            value: this.userInput,
+            onInput: e => { this.userInput = e.target.value; },
+            disabled: this.loading || this.error
+          }),
+          h('button', {
+            type: 'submit',
+            style: {
+              padding: '0.75rem 1.25rem',
+              borderRadius: '8px',
+              border: 'none',
+              background: '#e0cfa6',
+              color: '#7c4a03',
+              fontWeight: 'bold',
+              fontSize: '1rem',
+              cursor: 'pointer',
+            },
+            disabled: this.loading || this.error
+          }, 'Send')
+        ])
       ])
     ]);
   }
