@@ -71,13 +71,6 @@ def save_conversation():
         prompt_path = os.path.join(backend_dir, 'search_prompt.txt')
         with open(prompt_path, 'w', encoding='utf-8') as pf:
             pf.write(filtered_prompt)
-        # Automatically trigger the /search_books route
-        try:
-            # Use Flask's test_client to make an internal GET request
-            with app.test_client() as client:
-                client.get('/search_books')
-        except Exception:
-            pass
         return jsonify({'status': 'success'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500

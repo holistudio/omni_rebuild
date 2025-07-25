@@ -11,8 +11,9 @@ const App = {
     const loading = ref(true);
     const error = ref(null);
     const answers = ref([]);
+    const books = ref([]);
+    const view = ref('chat'); // 'chat' or 'results'
 
-    // Fetch questions from backend only
     const fetchQuestions = async () => {
       loading.value = true;
       try {
@@ -32,7 +33,6 @@ const App = {
 
     onMounted(fetchQuestions);
 
-    // Handle user input submit
     const handleInput = async (e) => {
       e.preventDefault();
       if (!userInput.value.trim()) return;
@@ -42,34 +42,52 @@ const App = {
         response: userInput.value
       };
       answers.value.push(logEntry);
-      // Save to localStorage
-      try {
-        localStorage.setItem('omni_conversation', JSON.stringify(answers.value));
-      } catch (err) {
-        // Ignore localStorage errors
-      }
+      localStorage.setItem('omni_conversation', JSON.stringify(answers.value));
       userInput.value = '';
+
       if (currentQuestionIndex.value < questions.value.length - 1) {
         currentQuestionIndex.value++;
       } else {
-        // After last question, send conversation to backend
+        loading.value = true;
         try {
           await fetch(`${BACKEND_URL}/save_conversation`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ conversation: answers.value })
           });
+
+          const res = await fetch(`${BACKEND_URL}/search_books`);
+          const data = await res.json();
+          books.value = data.books || [];
+          view.value = 'results';
         } catch (err) {
-          // Ignore backend errors for now
+          error.value = 'Failed to get book recommendations.';
         }
-        // Move index past last question to trigger final message
-        currentQuestionIndex.value++;
+        loading.value = false;
       }
     };
 
-    return { userInput, questions, currentQuestionIndex, loading, error, handleInput };
+    return { userInput, questions, currentQuestionIndex, loading, error, handleInput, books, view };
   },
   render() {
+    if (this.view === 'results') {
+      return h('div', {
+        style: {
+          width: '100%',
+          maxWidth: '800px',
+        }
+      }, [
+        h('h1', 'Here are some books you might like:'),
+        h('div', { class: 'book-grid' },
+          this.books.map(book => h('div', { class: 'book-item' }, [
+            h('img', { class: 'book-thumbnail', src: book.thumbnail, alt: book.title }),
+            h('div', { class: 'book-title' }, book.title),
+            h('div', { class: 'book-authors' }, book.authors ? book.authors.join(', ') : '')
+          ]))
+        )
+      ]);
+    }
+
     return h('div', [
       h('h1', 'Omni'),
       h('div', {
@@ -102,11 +120,9 @@ const App = {
             textAlign: 'center',
           }
         },
-          this.loading ? 'Loading questions...' :
+          this.loading ? 'Hmm, let me see...!' :
           this.error ? this.error :
-          (this.currentQuestionIndex >= this.questions.length ? 
-            'Hmm, let me see...here are some books you might like!' :
-            (this.questions[this.currentQuestionIndex] || 'No questions available.'))
+          (this.questions[this.currentQuestionIndex] || 'No questions available.')
         ),
         h('form', {
           style: {
@@ -143,7 +159,6 @@ const App = {
             onKeydown: e => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
-                // Submit the form
                 const form = e.target.form;
                 if (form) form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
               }
@@ -175,4 +190,4 @@ const App = {
   }
 };
 
-createApp(App).mount('#app'); 
+createApp(App).mount('#app');
