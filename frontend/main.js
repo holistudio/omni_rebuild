@@ -155,7 +155,7 @@ const App = {
               fontSize: '1rem',
               boxShadow: '0 1px 4px rgba(124, 74, 3, 0.04)',
               outline: 'none',
-              textAlign: 'center',
+              textAlign: 'left',
               resize: 'vertical',
             },
             value: this.userInput,
