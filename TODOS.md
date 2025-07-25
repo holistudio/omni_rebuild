@@ -2,9 +2,9 @@
 
 ## Phase 0: The basic look
 
- - [ ] Flask backend, Vue.js frontend
- - [ ] Front end displays the chatbot as the central UI element
- - [ ] Look and feel is warm and reflective of old beautiful libraries
+ - [x] Flask backend, Vue.js frontend
+ - [x] Front end displays the chatbot as the central UI element
+ - [x] Look and feel is warm and reflective of old beautiful libraries
 
 ## Phase 1: Dummy Agent
 
