@@ -124,7 +124,15 @@ const App = {
             },
             value: this.userInput,
             onInput: e => { this.userInput = e.target.value; },
-            disabled: this.loading || this.error
+            disabled: this.loading || this.error,
+            onKeydown: e => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                // Submit the form
+                const form = e.target.form;
+                if (form) form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+              }
+            }
           }),
           h('button', {
             type: 'submit',
