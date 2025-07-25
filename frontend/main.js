@@ -13,6 +13,7 @@ const App = {
     const answers = ref([]);
     const books = ref([]);
     const view = ref('chat'); // 'chat' or 'results'
+    const selectedBook = ref(null);
 
     const fetchQuestions = async () => {
       loading.value = true;
@@ -67,7 +68,15 @@ const App = {
       }
     };
 
-    return { userInput, questions, currentQuestionIndex, loading, error, handleInput, books, view };
+    const openPanel = (book) => {
+      selectedBook.value = book;
+    };
+
+    const closePanel = () => {
+      selectedBook.value = null;
+    };
+
+    return { userInput, questions, currentQuestionIndex, loading, error, handleInput, books, view, selectedBook, openPanel, closePanel };
   },
   render() {
     if (this.view === 'results') {
@@ -86,9 +95,16 @@ const App = {
               src: book.thumbnail,
               alt: book.title,
               title: book.title,
+              onClick: () => this.openPanel(book),
             }))
           ),
           h('div', { class: 'shelf' })
+        ]),
+        this.selectedBook && h('div', { class: `details-panel ${this.selectedBook ? 'open' : ''}` }, [
+          h('button', { class: 'close-btn', onClick: this.closePanel }, '×'),
+          h('h2', this.selectedBook.title),
+          h('h3', this.selectedBook.authors ? this.selectedBook.authors.join(', ') : 'Unknown Author'),
+          h('p', this.selectedBook.description || 'No description available.')
         ])
       ]);
     }

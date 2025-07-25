@@ -37,6 +37,7 @@
       .bookshelf-container {
         width: 100%;
         margin-top: 2rem;
+        position: relative; /* For panel positioning */
       }
       .book-row {
         display: grid;
@@ -65,6 +66,47 @@
       }
       .book-thumbnail:hover {
         transform: translateY(-5px) scale(1.05);
+      }
+      .details-panel {
+        position: fixed;
+        top: 0;
+        right: -400px; /* Start off-screen */
+        width: 350px;
+        height: 100%;
+        background: #fff8e1;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        padding: 2rem;
+        transition: right 0.3s ease-in-out;
+        z-index: 1000;
+        overflow-y: auto;
+      }
+      .details-panel.open {
+        right: 0;
+      }
+      .details-panel .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        border: none;
+        background: none;
+        color: #7c4a03;
+      }
+      .details-panel h2 {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        color: #7c4a03;
+      }
+      .details-panel h3 {
+        font-size: 1.1rem;
+        color: #8d6e63;
+        margin-bottom: 1.5rem;
+      }
+      .details-panel p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #4b2e05;
       }
     </style>
   </head>

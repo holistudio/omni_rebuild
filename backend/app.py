@@ -91,7 +91,7 @@ def search_books():
     params = {
         'q': query,
         'key': GOOGLE_BOOKS_API_KEY,
-        'maxResults': 10
+        'maxResults': 12
     }
     try:
         print(f"[Google Books API] GET {url} params={params}")
