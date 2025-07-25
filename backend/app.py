@@ -47,9 +47,25 @@ def save_conversation():
         # Concatenate all user responses and write to search_prompt.txt
         responses = [str(entry.get('response', '')) for entry in conversation]
         prompt = ' '.join(responses)
+        # Remove articles, personal pronouns, and prepositions
+        articles_pronouns_preps = set([
+            'a', 'an', 'the',
+            'i', 'you', 'he', 'she', 'it', 'we', 'they',
+            'me', 'him', 'her', 'us', 'them',
+            'my', 'your', 'his', 'its', 'our', 'their',
+            # Common prepositions
+            'about', 'above', 'across', 'after', 'against', 'along', 'among', 'around', 'at',
+            'before', 'behind', 'below', 'beneath', 'beside', 'between', 'beyond', 'but', 'by',
+            'concerning', 'despite', 'down', 'during', 'except', 'for', 'from', 'in', 'inside',
+            'into', 'like', 'near', 'of', 'off', 'on', 'onto', 'out', 'outside', 'over', 'past',
+            'regarding', 'since', 'through', 'throughout', 'to', 'toward', 'under', 'underneath',
+            'until', 'up', 'upon', 'with', 'within', 'without'
+        ])
+        filtered_words = [w for w in prompt.split() if w.lower() not in articles_pronouns_preps]
+        filtered_prompt = ' '.join(filtered_words)
         prompt_path = os.path.join(backend_dir, 'search_prompt.txt')
         with open(prompt_path, 'w', encoding='utf-8') as pf:
-            pf.write(prompt)
+            pf.write(filtered_prompt)
         return jsonify({'status': 'success'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
