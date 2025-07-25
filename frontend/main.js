@@ -110,7 +110,7 @@ const App = {
     }
 
     return h('div', [
-      h('h1', 'Omni'),
+      h('img', { src: 'img/logo.png', alt: 'Omni Logo', style: { width: '120px', margin: '0 auto 20px', display: 'block' } }),
       h('div', {
         style: {
           background: '#fbe9c6',
