@@ -21,11 +21,12 @@
         box-shadow: 0 4px 32px rgba(80, 60, 20, 0.12);
         padding: 2rem 3rem;
         min-width: 350px;
-        max-width: 420px;
+        max-width: 700px; /* Wider for the grid */
         min-height: 400px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        transition: max-width 0.5s ease-in-out;
       }
       h1 {
         font-family: 'Georgia', serif;
@@ -33,36 +34,37 @@
         margin-bottom: 1.5rem;
         color: #7c4a03;
       }
-      .book-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 1.5rem;
+      .bookshelf-container {
         width: 100%;
-        max-width: 800px;
         margin-top: 2rem;
       }
-      .book-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+      .book-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        justify-items: center;
+        align-items: flex-end;
+        margin-bottom: 1rem;
+      }
+      .shelf {
+        height: 15px;
+        background: #8d6e63; /* Wood color */
+        border: 3px solid #6d4c41;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        margin-bottom: 2rem;
       }
       .book-thumbnail {
         width: 120px;
         height: 180px;
         object-fit: cover;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transition: transform 0.2s ease-in-out;
+        cursor: pointer;
       }
-      .book-title {
-        font-weight: bold;
-        font-size: 0.9rem;
-        color: #6d4c1b;
-      }
-      .book-authors {
-        font-size: 0.8rem;
-        color: #8d6e63;
+      .book-thumbnail:hover {
+        transform: translateY(-5px) scale(1.05);
       }
     </style>
   </head>

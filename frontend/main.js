@@ -71,20 +71,25 @@ const App = {
   },
   render() {
     if (this.view === 'results') {
-      return h('div', {
-        style: {
-          width: '100%',
-          maxWidth: '800px',
-        }
-      }, [
+      const chunk = (arr, size) =>
+        Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+          arr.slice(i * size, i * size + size)
+        );
+      const bookRows = chunk(this.books.filter(b => b.thumbnail), 4);
+
+      return h('div', { class: 'bookshelf-container' }, [
         h('h1', 'Here are some books you might like:'),
-        h('div', { class: 'book-grid' },
-          this.books.map(book => h('div', { class: 'book-item' }, [
-            h('img', { class: 'book-thumbnail', src: book.thumbnail, alt: book.title }),
-            h('div', { class: 'book-title' }, book.title),
-            h('div', { class: 'book-authors' }, book.authors ? book.authors.join(', ') : '')
-          ]))
-        )
+        ...bookRows.flatMap(row => [
+          h('div', { class: 'book-row' },
+            row.map(book => h('img', {
+              class: 'book-thumbnail',
+              src: book.thumbnail,
+              alt: book.title,
+              title: book.title,
+            }))
+          ),
+          h('div', { class: 'shelf' })
+        ])
       ]);
     }
 
