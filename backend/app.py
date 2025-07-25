@@ -44,6 +44,12 @@ def save_conversation():
     try:
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(conversation, f, ensure_ascii=False, indent=2)
+        # Concatenate all user responses and write to search_prompt.txt
+        responses = [str(entry.get('response', '')) for entry in conversation]
+        prompt = ' '.join(responses)
+        prompt_path = os.path.join(backend_dir, 'search_prompt.txt')
+        with open(prompt_path, 'w', encoding='utf-8') as pf:
+            pf.write(prompt)
         return jsonify({'status': 'success'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
