@@ -8,8 +8,8 @@
 
 ## Phase 1: Dummy Agent
 
- - [ ] Add PostGreSQL Database contains a list of 10 questions
- - [ ] Chatbot always asks the same list of 10 questions in the same order everytime
+ - [x] Add PostGreSQL Database contains a list of 10 questions
+ - [x] Chatbot always asks the same list of 10 questions in the same order everytime
  - [ ] At the end of the 10 questions, the entire conversation log is fed into a book-related search engine. 
  - [ ] The search results are displayed back to the user as a grid of book cover images on a bookshelf.
  - [ ] Users can click on each book cover image to expand and show title, author, and synopsis.
