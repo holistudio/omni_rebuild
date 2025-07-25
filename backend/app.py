@@ -71,6 +71,13 @@ def save_conversation():
         prompt_path = os.path.join(backend_dir, 'search_prompt.txt')
         with open(prompt_path, 'w', encoding='utf-8') as pf:
             pf.write(filtered_prompt)
+        # Automatically trigger the /search_books route
+        try:
+            # Use Flask's test_client to make an internal GET request
+            with app.test_client() as client:
+                client.get('/search_books')
+        except Exception:
+            pass
         return jsonify({'status': 'success'})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -94,6 +101,7 @@ def search_books():
         'maxResults': 10
     }
     try:
+        print(f"[Google Books API] GET {url} params={params}")
         resp = requests.get(url, params=params)
         resp.raise_for_status()
         data = resp.json()
@@ -107,12 +115,18 @@ def search_books():
                 'thumbnail': volume.get('imageLinks', {}).get('thumbnail'),
                 'infoLink': volume.get('infoLink')
             })
+        # Print the first book result for debugging
+        if books:
+            print(f"[Google Books API] First result: {books[0]}")
+        else:
+            print("[Google Books API] No results found.")
         # Write results to search_results.json
         results_path = os.path.join(backend_dir, 'search_results.json')
         with open(results_path, 'w', encoding='utf-8') as rf:
             json.dump(books, rf, ensure_ascii=False, indent=2)
         return jsonify({'books': books})
     except Exception as e:
+        print(f"[Google Books API] ERROR: {e}")
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
