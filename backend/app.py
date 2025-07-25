@@ -3,6 +3,8 @@ from flask_cors import CORS
 import psycopg2
 import os
 import json
+from dotenv import load_dotenv
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -12,6 +14,9 @@ DB_USER = 'postgres'
 DB_PASSWORD = 'postgres'
 DB_HOST = 'localhost'
 DB_PORT = '5432'
+
+load_dotenv()
+GOOGLE_BOOKS_API_KEY = os.getenv('GOOGLE_BOOKS_API_KEY')
 
 @app.route('/')
 def index():
@@ -67,6 +72,42 @@ def save_conversation():
         with open(prompt_path, 'w', encoding='utf-8') as pf:
             pf.write(filtered_prompt)
         return jsonify({'status': 'success'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/search_books', methods=['GET'])
+def search_books():
+    backend_dir = os.path.dirname(os.path.abspath(__file__))
+    prompt_path = os.path.join(backend_dir, 'search_prompt.txt')
+    if not os.path.exists(prompt_path):
+        return jsonify({'error': 'search_prompt.txt not found'}), 404
+    with open(prompt_path, 'r', encoding='utf-8') as f:
+        query = f.read().strip()
+    if not query:
+        return jsonify({'error': 'Empty search prompt'}), 400
+    if not GOOGLE_BOOKS_API_KEY:
+        return jsonify({'error': 'Google Books API key not set'}), 500
+    url = 'https://www.googleapis.com/books/v1/volumes'
+    params = {
+        'q': query,
+        'key': GOOGLE_BOOKS_API_KEY,
+        'maxResults': 10
+    }
+    try:
+        resp = requests.get(url, params=params)
+        resp.raise_for_status()
+        data = resp.json()
+        books = []
+        for item in data.get('items', []):
+            volume = item.get('volumeInfo', {})
+            books.append({
+                'title': volume.get('title'),
+                'authors': volume.get('authors'),
+                'description': volume.get('description'),
+                'thumbnail': volume.get('imageLinks', {}).get('thumbnail'),
+                'infoLink': volume.get('infoLink')
+            })
+        return jsonify({'books': books})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
