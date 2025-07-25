@@ -121,17 +121,23 @@ const App = {
           h('button', {
             type: 'submit',
             style: {
-              padding: '0.75rem 1.25rem',
-              borderRadius: '8px',
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
               border: 'none',
               background: '#e0cfa6',
               color: '#7c4a03',
               fontWeight: 'bold',
-              fontSize: '1rem',
+              fontSize: '1.5rem',
               cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 1px 4px rgba(124, 74, 3, 0.08)',
+              transition: 'background 0.2s',
             },
             disabled: this.loading || this.error
-          }, 'Send')
+          }, '↑')
         ])
       ])
     ]);
