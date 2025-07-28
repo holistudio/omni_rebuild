@@ -18,7 +18,7 @@
  - [x] Users can click on each book cover image to expand and show title, author, and synopsis.
  - [x] UI: Chatbot interface occupies 60% of the screen width
  - [x] UI: Book recomendations occupies 60% of the screen width
- - [ ] UI: Screen displays title, author, synopsis as an overlay panel when user mouse over book thumbnail.
+ - [x] UI: Book recomendations should be on a separate page
 
 ## Phase 2: LangChain and RAG
 
