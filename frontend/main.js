@@ -61,6 +61,7 @@ const App = {
           const data = await res.json();
           books.value = data.books || [];
           view.value = 'results';
+          document.getElementById('app').classList.add('results-view');
         } catch (err) {
           error.value = 'Failed to get book recommendations.';
         }
@@ -109,35 +110,39 @@ const App = {
       ]);
     }
 
-    return h('div', [
+    return h('div', { 
+      id: 'chatbox' , 
+      style: {
+          minHeight: '80%'
+        }
+      }, [
       h('img', { src: 'img/logo.png', alt: 'Omni Logo', style: { width: '120px', margin: '0 auto 20px', display: 'block' } }),
       h('div', {
+        id: 'convo',
         style: {
           background: '#fbe9c6',
           borderRadius: '12px',
           padding: '2rem',
           marginTop: '1rem',
-          minHeight: '300px',
-          width: '100%',
-          maxWidth: '420px',
+          height: '100%',
           boxShadow: '0 4px 32px rgba(80, 60, 20, 0.12)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           color: '#6d4c1b',
-          fontSize: '1.1rem',
+          fontSize: '2rem',
           position: 'relative',
         }
       }, [
         h('div', {
+          id: 'chatbot-output',
           style: {
-            flex: 1,
+            height: '80%',
             width: '100%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            minHeight: '60px',
             textAlign: 'center',
           }
         },
@@ -147,6 +152,7 @@ const App = {
         ),
         h('form', {
           style: {
+            height: '20%',
             width: '100%',
             display: 'flex',
             flexDirection: 'row',
@@ -161,14 +167,14 @@ const App = {
             placeholder: 'Type your answer...',
             style: {
               flex: 1,
-              maxWidth: '260px',
-              minHeight: '60px',
+              maxWidth: '80%',
+              minHeight: '100%',
               padding: '0.75rem 1rem',
               borderRadius: '8px',
               border: '1px solid #e0cfa6',
               background: '#fffbe9',
               color: '#6d4c1b',
-              fontSize: '1rem',
+              fontSize: '2rem',
               boxShadow: '0 1px 4px rgba(124, 74, 3, 0.04)',
               outline: 'none',
               textAlign: 'left',
@@ -195,7 +201,7 @@ const App = {
               background: '#e0cfa6',
               color: '#7c4a03',
               fontWeight: 'bold',
-              fontSize: '1.5rem',
+              fontSize: '2rem',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
