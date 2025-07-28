@@ -2,51 +2,51 @@
   {
     "q_index": 0,
     "question": "What types of stories (books, movies, TV shows, podcasts) do you find yourself drawn to most often?",
-    "response": "I've enjoyed books such as Interior Chinatown, movies like The Prestige and 2001 a Space Odyssey, and TV shows like The Bear and Futurama."
+    "response": "I like 2001 a Space Odyssey and books like I Robot"
   },
   {
     "q_index": 1,
     "question": "Is there a particular genre or theme you never get tired of exploring?",
-    "response": "Sci-fi and AI"
+    "response": "Sci-fi and AI of course!"
   },
   {
     "q_index": 2,
     "question": "Can you share a book or story that had a big impact on you in the past? What made it memorable?",
-    "response": "The Book of Why really helped me understand how people learn and can learn through statistics."
+    "response": "Hardboiled Wonderland and the End of the World. It was a very cool story"
   },
   {
     "q_index": 3,
     "question": "Are there any authors whose writing style you especially enjoy or dislike?",
-    "response": "Michael Lewis"
+    "response": "Michael Lewis's writing style is great"
   },
   {
     "q_index": 4,
     "question": "Do you prefer stories with fast-paced plots, deep character development, or rich world-building?",
-    "response": "I like seeing characters grow over the course of a story"
+    "response": "Deep character development"
   },
   {
     "q_index": 5,
     "question": "What’s a book, film, or show you recently enjoyed, and what did you like about it?",
-    "response": "I recently enjoyed the film Ne Zha, especially its emotional storyline and character growth."
+    "response": "I recently enjoyed Interior Chinatown"
   },
   {
     "q_index": 6,
     "question": "Are there any topics or genres you’re not interested in or actively avoid?",
-    "response": "Not really"
+    "response": "not really"
   },
   {
     "q_index": 7,
     "question": "Do you enjoy stories that challenge your perspective, or do you prefer comfort reads?",
-    "response": "Comfort reads"
+    "response": "both"
   },
   {
     "q_index": 8,
     "question": "How do you usually discover new books or stories to enjoy?",
-    "response": "Through friends"
+    "response": "through friends"
   },
   {
     "q_index": 9,
     "question": "Is there a story you wish existed, or a topic you’d love to read more about?",
-    "response": "I wonder if there are stories about people using technology that's open source and how that means people can do a lot of good or evil."
+    "response": "A story about open source tech and how some people use it for good or evil."
   }
 ]
