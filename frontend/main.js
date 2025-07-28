@@ -59,9 +59,8 @@ const App = {
 
           const res = await fetch(`${BACKEND_URL}/search_books`);
           const data = await res.json();
-          books.value = data.books || [];
-          view.value = 'results';
-          document.getElementById('app').classList.add('results-view');
+          localStorage.setItem('omni_books', JSON.stringify(data.books || []));
+          window.location.href = '/results.html';
         } catch (err) {
           error.value = 'Failed to get book recommendations.';
         }
@@ -80,42 +79,6 @@ const App = {
     return { userInput, questions, currentQuestionIndex, loading, error, handleInput, books, view, selectedBook, openPanel, closePanel };
   },
   render() {
-    if (this.view === 'results') {
-      const chunk = (arr, size) =>
-        Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-          arr.slice(i * size, i * size + size)
-        );
-      const bookRows = chunk(this.books.filter(b => b.thumbnail), 4);
-
-      return h('div', { 
-        class: 'bookshelf-container' ,
-        style: {
-          minHeight: '80%',
-          width: '100%'
-        }
-      }, [
-        h('h1', 'Here are some books you might like:'),
-        ...bookRows.flatMap(row => [
-          h('div', { class: 'book-row' },
-            row.map(book => h('img', {
-              class: 'book-thumbnail',
-              src: book.thumbnail,
-              alt: book.title,
-              title: book.title,
-              onClick: () => this.openPanel(book),
-            }))
-          ),
-          h('div', { class: 'shelf' })
-        ]),
-        this.selectedBook && h('div', { class: `details-panel ${this.selectedBook ? 'open' : ''}` }, [
-          h('button', { class: 'close-btn', onClick: this.closePanel }, '×'),
-          h('h2', this.selectedBook.title),
-          h('h3', this.selectedBook.authors ? this.selectedBook.authors.join(', ') : 'Unknown Author'),
-          h('p', this.selectedBook.description || 'No description available.')
-        ])
-      ]);
-    }
-
     return h('div', { 
       id: 'chatbox' , 
       style: {
