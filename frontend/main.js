@@ -87,7 +87,13 @@ const App = {
         );
       const bookRows = chunk(this.books.filter(b => b.thumbnail), 4);
 
-      return h('div', { class: 'bookshelf-container' }, [
+      return h('div', { 
+        class: 'bookshelf-container' ,
+        style: {
+          minHeight: '80%',
+          width: '100%'
+        }
+      }, [
         h('h1', 'Here are some books you might like:'),
         ...bookRows.flatMap(row => [
           h('div', { class: 'book-row' },
@@ -113,7 +119,8 @@ const App = {
     return h('div', { 
       id: 'chatbox' , 
       style: {
-          minHeight: '80%'
+          minHeight: '80%',
+          width: '100%'
         }
       }, [
       h('img', { src: 'img/logo.png', alt: 'Omni Logo', style: { width: '120px', margin: '0 auto 20px', display: 'block' } }),
