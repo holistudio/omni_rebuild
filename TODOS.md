@@ -16,9 +16,9 @@
  - [x] Search prompt fed into Google Books API. 
  - [x] The search results are displayed back to the user as a grid of book cover images on a bookshelf.
  - [x] Users can click on each book cover image to expand and show title, author, and synopsis.
- - [ ] UI: Chatbot interface on left half 50% of the screen
- - [ ] UI: Book recomendations on left half 50% of the screen
- - [ ] UI: Right half of the screen displays title, author, synopsis when user clicks on book thumbnail.
+ - [ ] UI: Chatbot interface occupies 60% of the screen width
+ - [ ] UI: Book recomendations occupies full screen width
+ - [ ] UI: Screen displays title, author, synopsis as an overlay panel when user mouse over book thumbnail.
 
 ## Phase 2: LangChain and RAG
 
