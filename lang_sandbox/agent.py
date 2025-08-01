@@ -1,6 +1,7 @@
 import getpass
 import os
 import ast
+import random
 
 from langchain.chat_models import init_chat_model
 
@@ -120,7 +121,12 @@ class ChatAgent(object):
             if self.q_count < 7:
                 sys_message = self.sys_generic
             else:
-                sys_message = self.sys_specific
+                flip = random.random()
+                # print(flip)
+                if flip > 0.5:
+                    sys_message = self.sys_specific
+                else:
+                    sys_message = self.sys_generic
         else:
             sys_message = self.sys_intro
         self.set_sys_message(sys_message)
