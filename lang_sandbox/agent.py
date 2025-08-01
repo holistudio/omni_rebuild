@@ -74,6 +74,13 @@ class ChatAgent(object):
         self.app = self.workflow.compile(checkpointer=memory)
 
         self.config = {"configurable": {"thread_id": "abc123"}}
+        
+        self.q_count = 0
+
+        self.sys_intro = "The user is open to suggestions for new books to read. For now, only ask the user one question for their name."
+
+        self.sys_generic = "The user is open to suggestions for new books to read. Try to get to know who they are, their general interest in stories, and specific tastes in books. ALWAYS ask ONE and ONLY ONE question at a time."
+
         self.prompt_template = ChatPromptTemplate.from_messages(
             [
                 (
@@ -94,10 +101,29 @@ class ChatAgent(object):
         response = self.model.invoke(prompt)
         return {"messages": [response]}
     
+    def set_sys_message(self, message):
+        self.prompt_template = ChatPromptTemplate.from_messages(
+            [
+                (
+                    "system",
+                    message,
+                ),
+                MessagesPlaceholder(variable_name="messages"),
+            ]
+        )
+        return self.prompt_template
+
     def respond(self, query):
+        if self.q_count > 0:
+            sys_message = self.sys_generic
+        else:
+            sys_message = self.sys_intro
+        self.set_sys_message(sys_message)
+
         input_messages = [HumanMessage(query)]
         output = self.app.invoke({"messages": input_messages}, self.config)
         response = output["messages"][-1].content
         # response_pretty = ast.literal_eval(response)
         # response_pretty = response.encode().decode('unicode_escape')
+        self.q_count += 1
         return response, output["messages"]
