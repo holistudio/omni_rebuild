@@ -81,6 +81,8 @@ class ChatAgent(object):
 
         self.sys_generic = "The user is open to suggestions for new books to read. Try to get to know who they are, their general interest in stories, and specific tastes in books. ALWAYS ask ONE and ONLY ONE question at a time."
 
+        self.sys_specific = "The user is open to suggestions for new books to read. Try to understand their specific tastes in books. Ask them if they have read a specific book by a specific author. ALWAYS ask ONE and ONLY ONE question at a time."
+
         self.prompt_template = ChatPromptTemplate.from_messages(
             [
                 (
@@ -115,7 +117,10 @@ class ChatAgent(object):
 
     def respond(self, query):
         if self.q_count > 0:
-            sys_message = self.sys_generic
+            if self.q_count < 7:
+                sys_message = self.sys_generic
+            else:
+                sys_message = self.sys_specific
         else:
             sys_message = self.sys_intro
         self.set_sys_message(sys_message)
