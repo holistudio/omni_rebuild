@@ -53,7 +53,7 @@ class ChatAgent(object):
 
         # Message trimmer
         self.trimmer = trim_messages(
-            max_tokens=65,
+            max_tokens=1500,
             strategy="last",
             token_counter=self.model,
             include_system=True,
