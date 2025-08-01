@@ -80,9 +80,11 @@ class ChatAgent(object):
 
         self.sys_intro = "The user is open to suggestions for new books to read. For now, only ask the user one question for their name."
 
-        self.sys_generic = "The user is open to suggestions for new books to read. Try to get to know who they are, their general interest in stories, and specific tastes in books. ALWAYS ask ONE and ONLY ONE question at a time."
+        self.sys_generic = "Imagine you are a librarian in the world's biggest library and love to read all kinds of books. The user is open to suggestions for new books to read. Try to get to know who they are, their general interest in stories, and specific tastes in books. Ask natural flowing questions that invite them to describe their interests at great length. ALWAYS ask ONE and ONLY ONE question at a time. Avoid sounding robotic."
 
         self.sys_specific = "The user is open to suggestions for new books to read. Try to understand their specific tastes in books. Ask them if they have read a specific book by a specific author. ALWAYS ask ONE and ONLY ONE question at a time."
+        
+        self.sys_end = "Based on the previous conversation, summarize the user's taste for books in a long-form paragraph back to the user and see if there's anything misunderstood. Avoid using bullet points and references to titles, authors, or genres. Focus on the essence of their interests."
 
         self.prompt_template = ChatPromptTemplate.from_messages(
             [
@@ -121,12 +123,15 @@ class ChatAgent(object):
             if self.q_count < 7:
                 sys_message = self.sys_generic
             else:
-                flip = random.random()
-                # print(flip)
-                if flip > 0.5:
-                    sys_message = self.sys_specific
+                if self.q_count < 10:
+                    flip = random.random()
+                    # print(flip)
+                    if flip > 0.5:
+                        sys_message = self.sys_specific
+                    else:
+                        sys_message = self.sys_generic
                 else:
-                    sys_message = self.sys_generic
+                    sys_message = self.sys_end
         else:
             sys_message = self.sys_intro
         self.set_sys_message(sys_message)
