@@ -78,7 +78,7 @@ class ChatAgent(object):
             [
                 (
                     "system",
-                    "The user is open to suggestions for new books to read. Try to get to know who they are, their general interest in stories, and specific tastes in books.",
+                    "The user is open to suggestions for new books to read. Try to get to know who they are, their general interest in stories, and specific tastes in books. ALWAYS ask ONE and ONLY ONE question at a time.",
                 ),
                 MessagesPlaceholder(variable_name="messages"),
             ]
