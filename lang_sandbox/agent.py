@@ -42,3 +42,9 @@ if not os.getenv("GOOGLE_API_KEY"):
 
 
 model = init_chat_model("gemini-2.0-flash", model_provider="google_genai")
+
+# New State dictionary class
+class State(TypedDict):
+    messages: Annotated[Sequence[BaseMessage], add_messages]
+    language: str
+
