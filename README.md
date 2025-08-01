@@ -15,7 +15,24 @@ a rebuild of project-omnibus using LangChain and RAG
    ```
    pip install -r requirements.txt
    ```
-4. Run the Flask server:
+
+   ```
+   pip install -qU "langchain[google-genai]"
+   ```
+
+   ```
+   pip install langchain-core langgraph>0.2.28
+   ```
+4. `.env` file:
+
+   ```
+   GOOGLE_API_KEY=(your Gemini API Key here)
+   LANGSMITH_API_KEY=(your LangSmith API Key here)
+   LANGSMITH_TRACING=true
+   LANGSMITH_PROJECT=default (or LangSmith project name)
+   ```
+   
+5. Run the Flask server:
    ```
    flask run
    ```
