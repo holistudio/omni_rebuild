@@ -41,45 +41,12 @@ if not os.getenv("GOOGLE_API_KEY"):
   os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter API key for Google Gemini: ")
 
 
-model = init_chat_model("gemini-2.0-flash", model_provider="google_genai")
 
 # New State dictionary class
 class State(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
     language: str
 
-# Message trimmer
-trimmer = trim_messages(
-    max_tokens=65,
-    strategy="last",
-    token_counter=model,
-    include_system=True,
-    allow_partial=False,
-    start_on="human",
-)
-
-# Define a new graph
-workflow = StateGraph(state_schema=MessagesState)
-
-# Define the function that calls the model
-def call_model(state: State):
-    trimmed_messages = trimmer.invoke(state["messages"])
-    prompt = prompt_template.invoke(
-        {"messages": trimmed_messages, "language": state["language"]}
-    )
-    response = model.invoke(prompt)
-    return {"messages": [response]}
-
-# Define the (single) node in the graph
-workflow.add_edge(START, "model")
-workflow.add_node("model", call_model)
-
-# Add memory
-memory = MemorySaver()
-app = workflow.compile(checkpointer=memory)
-
-
-config = {"configurable": {"thread_id": "abc123"}}
 
 prompt_template = ChatPromptTemplate.from_messages(
     [
@@ -96,3 +63,40 @@ query = "Hi! I'm Jim."
 input_messages = [HumanMessage(query)]
 output = app.invoke({"messages": input_messages}, config)
 output["messages"][-1].pretty_print()
+
+class ChatAgent(object):
+    def __init__(self):
+        self.model = init_chat_model("gemini-2.0-flash", model_provider="google_genai")
+
+        # Message trimmer
+        self.trimmer = trim_messages(
+            max_tokens=65,
+            strategy="last",
+            token_counter=self.model,
+            include_system=True,
+            allow_partial=False,
+            start_on="human",
+        )
+
+        # Define a new graph
+        self.workflow = StateGraph(state_schema=MessagesState)
+
+        # Define the (single) node in the graph
+        self.workflow.add_edge(START, "model")
+        self.workflow.add_node("model", self.call_model)
+
+        # Add memory
+        memory = MemorySaver()
+        self.app = self.workflow.compile(checkpointer=memory)
+
+        self.config = {"configurable": {"thread_id": "abc123"}}
+        pass
+
+    # Define the function that calls the model
+    def call_model(self, state: State):
+        trimmed_messages = self.trimmer.invoke(state["messages"])
+        prompt = prompt_template.invoke(
+            {"messages": trimmed_messages, "language": state["language"]}
+        )
+        response = self.model.invoke(prompt)
+        return {"messages": [response]}
