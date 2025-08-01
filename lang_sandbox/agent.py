@@ -48,3 +48,51 @@ class State(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
     language: str
 
+# Message trimmer
+trimmer = trim_messages(
+    max_tokens=65,
+    strategy="last",
+    token_counter=model,
+    include_system=True,
+    allow_partial=False,
+    start_on="human",
+)
+
+# Define a new graph
+workflow = StateGraph(state_schema=MessagesState)
+
+# Define the function that calls the model
+def call_model(state: State):
+    trimmed_messages = trimmer.invoke(state["messages"])
+    prompt = prompt_template.invoke(
+        {"messages": trimmed_messages, "language": state["language"]}
+    )
+    response = model.invoke(prompt)
+    return {"messages": [response]}
+
+# Define the (single) node in the graph
+workflow.add_edge(START, "model")
+workflow.add_node("model", call_model)
+
+# Add memory
+memory = MemorySaver()
+app = workflow.compile(checkpointer=memory)
+
+
+config = {"configurable": {"thread_id": "abc123"}}
+
+prompt_template = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "The user is open to suggestions for new books to read. Try to get to know who they are, their general interest in stories, and specific tastes in books.",
+        ),
+        MessagesPlaceholder(variable_name="messages"),
+    ]
+)
+
+query = "Hi! I'm Jim."
+
+input_messages = [HumanMessage(query)]
+output = app.invoke({"messages": input_messages}, config)
+output["messages"][-1].pretty_print()
