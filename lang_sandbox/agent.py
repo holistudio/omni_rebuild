@@ -1,5 +1,6 @@
 import getpass
 import os
+import ast
 
 from langchain.chat_models import init_chat_model
 
@@ -96,4 +97,7 @@ class ChatAgent(object):
     def respond(self, query):
         input_messages = [HumanMessage(query)]
         output = self.app.invoke({"messages": input_messages}, self.config)
-        return output["messages"][-1]
+        response = output["messages"][-1].content
+        # response_pretty = ast.literal_eval(response)
+        # response_pretty = response.encode().decode('unicode_escape')
+        return response, output["messages"]
