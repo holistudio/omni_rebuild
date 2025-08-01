@@ -47,23 +47,6 @@ class State(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
     language: str
 
-
-prompt_template = ChatPromptTemplate.from_messages(
-    [
-        (
-            "system",
-            "The user is open to suggestions for new books to read. Try to get to know who they are, their general interest in stories, and specific tastes in books.",
-        ),
-        MessagesPlaceholder(variable_name="messages"),
-    ]
-)
-
-query = "Hi! I'm Jim."
-
-input_messages = [HumanMessage(query)]
-output = app.invoke({"messages": input_messages}, config)
-output["messages"][-1].pretty_print()
-
 class ChatAgent(object):
     def __init__(self):
         self.model = init_chat_model("gemini-2.0-flash", model_provider="google_genai")
@@ -90,13 +73,27 @@ class ChatAgent(object):
         self.app = self.workflow.compile(checkpointer=memory)
 
         self.config = {"configurable": {"thread_id": "abc123"}}
+        self.prompt_template = ChatPromptTemplate.from_messages(
+            [
+                (
+                    "system",
+                    "The user is open to suggestions for new books to read. Try to get to know who they are, their general interest in stories, and specific tastes in books.",
+                ),
+                MessagesPlaceholder(variable_name="messages"),
+            ]
+        )
         pass
 
     # Define the function that calls the model
     def call_model(self, state: State):
         trimmed_messages = self.trimmer.invoke(state["messages"])
-        prompt = prompt_template.invoke(
-            {"messages": trimmed_messages, "language": state["language"]}
+        prompt = self.prompt_template.invoke(
+            {"messages": trimmed_messages}
         )
         response = self.model.invoke(prompt)
         return {"messages": [response]}
+    
+    def respond(self, query):
+        input_messages = [HumanMessage(query)]
+        output = self.app.invoke({"messages": input_messages}, self.config)
+        return output["messages"][-1]
