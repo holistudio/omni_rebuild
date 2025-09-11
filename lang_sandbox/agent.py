@@ -119,6 +119,8 @@ class ChatAgent(object):
         return self.prompt_template
 
     def respond(self, query):
+        # depending on how many human query messages have been made
+        # set the system message to tweak out the chatbot responds
         if self.q_count > 0:
             if self.q_count < 7:
                 sys_message = self.sys_generic
@@ -134,13 +136,22 @@ class ChatAgent(object):
                     sys_message = self.sys_end
         else:
             sys_message = self.sys_intro
+
+        # set the system message in prompt_template
         self.set_sys_message(sys_message)
 
+        # wrap the human query in a HumanMessage
         input_messages = [HumanMessage(query)]
+
+        # invoke the app with the HumanMessage
         output = self.app.invoke({"messages": input_messages}, self.config)
+
+        # get back the chatbot response
         response = output["messages"][-1].content
         # response_pretty = ast.literal_eval(response)
         # response_pretty = response.encode().decode('unicode_escape')
+
+        # increment query counter
         self.q_count += 1
         return response, output["messages"]
     
