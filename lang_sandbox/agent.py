@@ -67,8 +67,8 @@ class ChatAgent(object):
         self.workflow = StateGraph(state_schema=MessagesState)
 
         # Define the (single) node in the graph
-        self.workflow.add_edge(START, "model")
-        self.workflow.add_node("model", self.call_model)
+        self.workflow.add_edge(START, "chat_node")
+        self.workflow.add_node("chat_node", self.call_chatbot)
 
         # Add memory
         memory = MemorySaver()
@@ -98,7 +98,7 @@ class ChatAgent(object):
         pass
 
     # Define the function that calls the model
-    def call_model(self, state: State):
+    def call_chatbot(self, state: State):
         trimmed_messages = self.trimmer.invoke(state["messages"])
         prompt = self.prompt_template.invoke(
             {"messages": trimmed_messages}
