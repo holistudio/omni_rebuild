@@ -143,3 +143,18 @@ class ChatAgent(object):
         # response_pretty = response.encode().decode('unicode_escape')
         self.q_count += 1
         return response, output["messages"]
+    
+    def book_search_query(self):
+        # system message 
+        sys_message = "Based on the entire conversation so far, generate search terms for the Google Books search engine to find the books that the user will most likely want to read."
+        self.set_sys_message(sys_message)
+
+        # invoke the app and get back the search terms
+
+        # post request to the Google Books API
+
+        # get back a list of book titles, author, description
+
+        # add an explanation for each book
+
+        return
