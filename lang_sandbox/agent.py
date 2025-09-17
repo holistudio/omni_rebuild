@@ -185,7 +185,9 @@ class ChatAgent(object):
         )
         prompt = self.query_prompt.invoke(
             {"chat_history": chat_history,
-             "messages": trimmed_messages}
+             "messages": [HumanMessage(
+                 "Based on the entire conversation so far, generate search terms for the Google Books search engine to find the books that I will most likely want to read."
+             )]}
         )
         # print(prompt)
         response = self.model.invoke(prompt)
