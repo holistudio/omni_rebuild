@@ -7,7 +7,7 @@ from langchain.chat_models import init_chat_model
 
 from langchain_core.messages import HumanMessage, AIMessage, BaseMessage, SystemMessage, trim_messages
 from langgraph.checkpoint.memory import MemorySaver
-from langgraph.graph import START, MessagesState, StateGraph
+from langgraph.graph import START, MessagesState, StateGraph, END
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
@@ -47,6 +47,7 @@ if not os.getenv("GOOGLE_API_KEY"):
 # New State dictionary class
 class State(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
+    search_query: str
     language: str
 
 class ChatAgent(object):
@@ -64,11 +65,15 @@ class ChatAgent(object):
         )
 
         # Define a new graph
-        self.workflow = StateGraph(state_schema=MessagesState)
+        # self.workflow = StateGraph(state_schema=MessagesState)
+        self.workflow = StateGraph(State)
 
         # Define the (single) node in the graph
         self.workflow.add_edge(START, "chat_node")
         self.workflow.add_node("chat_node", self.call_chatbot)
+        self.workflow.add_node("search_node", self.make_search_query)
+        self.workflow.add_edge("chat_node","search_node")
+        self.workflow.add_edge("search_node", END)
 
         # Add memory
         memory = MemorySaver()
@@ -95,16 +100,29 @@ class ChatAgent(object):
                 MessagesPlaceholder(variable_name="messages"),
             ]
         )
+
+        self.query_prompt = ChatPromptTemplate.from_messages(
+            [
+                (
+                    "system", 
+                    "You are a query generator. Given the conversation history with the user, produce a concise search query for the Google Books search engine API to find the books that the user will most likely want to read. Do not explain — only return the query terms. Conversation: {chat_history}"
+                ),
+                MessagesPlaceholder(variable_name="messages"),
+            ]
+        )
         pass
 
     # Define the function that calls the model
     def call_chatbot(self, state: State):
+        # print("# call_chatbot()")
         trimmed_messages = self.trimmer.invoke(state["messages"])
         prompt = self.prompt_template.invoke(
             {"messages": trimmed_messages}
         )
         response = self.model.invoke(prompt)
-        return {"messages": [response]}
+        # return {"messages": [response]}
+        state["messages"].append(AIMessage(content=response.content))
+        return state
     
     def set_sys_message(self, message):
         self.prompt_template = ChatPromptTemplate.from_messages(
@@ -119,6 +137,7 @@ class ChatAgent(object):
         return self.prompt_template
 
     def respond(self, query):
+        # print("# respond()")
         # depending on how many human query messages have been made
         # set the system message to tweak out the chatbot responds
         if self.q_count > 0:
@@ -146,6 +165,8 @@ class ChatAgent(object):
         # invoke the app with the HumanMessage
         output = self.app.invoke({"messages": input_messages}, self.config)
 
+        # print(output.keys())
+
         # get back the chatbot response
         response = output["messages"][-1].content
         # response_pretty = ast.literal_eval(response)
@@ -153,9 +174,27 @@ class ChatAgent(object):
 
         # increment query counter
         self.q_count += 1
-        return response, output["messages"]
+        return response, output["messages"], output["search_query"]
     
-    def book_search_query(self):
+    def make_search_query(self, state: State):
+        # print("# make_search_query()")
+        trimmed_messages = self.trimmer.invoke(state["messages"])
+        # get conversation history
+        chat_history = "\n".join(
+            f"{m.type.capitalize()}: {m.content}" for m in trimmed_messages
+        )
+        prompt = self.query_prompt.invoke(
+            {"chat_history": chat_history,
+             "messages": trimmed_messages}
+        )
+        # print(prompt)
+        response = self.model.invoke(prompt)
+        # print(response)
+        state["search_query"] = response.content
+        # return {"search_query": [response.content]}
+        return state
+    
+    def book_search(self):
         # system message 
         sys_message = "Based on the entire conversation so far, generate search terms for the Google Books search engine to find the books that the user will most likely want to read."
         self.set_sys_message(sys_message)
