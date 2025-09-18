@@ -2,6 +2,9 @@ import getpass
 import os
 import ast
 import random
+import json
+
+import requests
 
 from langchain.chat_models import init_chat_model
 
@@ -41,6 +44,9 @@ if not os.getenv("LANGSMITH_PROJECT"):
 
 if not os.getenv("GOOGLE_API_KEY"):
   os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter API key for Google Gemini: ")
+
+if not os.getenv("GOOGLE_BOOKS_API_KEY"):
+  os.environ["GOOGLE_BOOKS_API_KEY"] = getpass.getpass("Enter API key for Google Books: ")
 
 
 
@@ -105,7 +111,7 @@ class ChatAgent(object):
             [
                 (
                     "system", 
-                    "You are a query generator. Given the conversation history with the user, produce a concise search query for the Google Books search engine API to find the books that the user will most likely want to read. Do not explain — only return the query terms. Conversation: {chat_history}"
+                    "You are a query generator. Given the conversation history with the user, produce a concise search query for the Google Books search engine API to find the books that the user will most likely want to read. Conversation: {chat_history}"
                 ),
                 MessagesPlaceholder(variable_name="messages"),
             ]
@@ -172,6 +178,12 @@ class ChatAgent(object):
         # response_pretty = ast.literal_eval(response)
         # response_pretty = response.encode().decode('unicode_escape')
 
+        print(self.q_count)
+        # if the chatbot has asked 10 questions, write latest search query to Google Books
+        if self.q_count > 10:
+            with open('search_prompt.txt', 'w', encoding='utf-8') as pf:
+                pf.write(output["search_query"])
+            self.search_books()
         # increment query counter
         self.q_count += 1
         return response, output["messages"], output["search_query"]
@@ -186,7 +198,15 @@ class ChatAgent(object):
         prompt = self.query_prompt.invoke(
             {"chat_history": chat_history,
              "messages": [HumanMessage(
-                 "Based on the entire conversation so far, generate search terms for the Google Books search engine to find the books that I will most likely want to read."
+                 """
+                 What: Based on the entire conversation so far, generate search terms for the Google Books search engine to find the books that I will most likely want to read.
+                 Bounds:
+                  - Do NOT use search operators (e.g., '-' or exact phrase quotes "")
+                  - Keep the list of search terms within 10 keywords
+                  - Focus on what I want rather than what I might not like.
+                 Success:
+                  - Finding at least 10 books I might like with your generated search terms.
+                 """
              )]}
         )
         # print(prompt)
@@ -196,17 +216,57 @@ class ChatAgent(object):
         # return {"search_query": [response.content]}
         return state
     
-    def book_search(self):
-        # system message 
-        sys_message = "Based on the entire conversation so far, generate search terms for the Google Books search engine to find the books that the user will most likely want to read."
-        self.set_sys_message(sys_message)
-
-        # invoke the app and get back the search terms
+    def search_books(self):
+        # read search query from text file
+        backend_dir = os.path.dirname(os.path.abspath(__file__))
+        prompt_path = os.path.join(backend_dir, 'search_prompt.txt')
+        if not os.path.exists(prompt_path):
+            return {'error': 'search_prompt.txt not found'}, 404
+        with open(prompt_path, 'r', encoding='utf-8') as f:
+            query = f.read().strip()
+            query = query.replace('"','')
 
         # post request to the Google Books API
+        if not query:
+            return {'error': 'Empty search prompt'}, 400
+        if not os.environ["GOOGLE_BOOKS_API_KEY"]:
+            return {'error': 'Google Books API key not set'}, 500
+        url = 'https://www.googleapis.com/books/v1/volumes'
+        params = {
+            'q': query,
+            'key': os.environ["GOOGLE_BOOKS_API_KEY"],
+            'maxResults': 12
+        }
 
-        # get back a list of book titles, author, description
+        try:
+            print(f"[Google Books API] GET {url}")
+            resp = requests.get(url, params=params)
+            resp.raise_for_status()
+            data = resp.json()
+            books = []
+            for item in data.get('items', []):
+                volume = item.get('volumeInfo', {})
+                books.append({
+                    'title': volume.get('title'),
+                    'authors': volume.get('authors'),
+                    'description': volume.get('description'),
+                    'thumbnail': volume.get('imageLinks', {}).get('thumbnail'),
+                    'infoLink': volume.get('infoLink')
+                })
+            
+            # get back a list of book titles, author, description
+            # Print the first book result for debugging
+            if books:
+                print(f"[Google Books API] First result: {books[0]}")
+            else:
+                print("[Google Books API] No results found.")
+            # Write results to search_results.json
+            results_path = os.path.join(backend_dir, 'search_results.json')
+            with open(results_path, 'w', encoding='utf-8') as rf:
+                json.dump(books, rf, ensure_ascii=False, indent=2)
 
-        # add an explanation for each book
-
-        return
+            # TODO: add an explanation for each book
+            return {'books': books}
+        except Exception as e:
+            print(f"[Google Books API] ERROR: {e}")
+            return {'error': str(e)}, 500
