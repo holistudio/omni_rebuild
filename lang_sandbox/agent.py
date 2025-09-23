@@ -54,6 +54,7 @@ if not os.getenv("GOOGLE_BOOKS_API_KEY"):
 class State(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
     search_query: str
+    book_recs: str
     language: str
 
 class ChatAgent(object):
