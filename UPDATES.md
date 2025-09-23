@@ -35,7 +35,7 @@ Hokay finally think it makes sense to recap what I've done so far and jot down s
 
 First just a quick recap:
 
- 1. This whole started out as a vibe-coding what-if exercise: My friends and I made a chatbot a long time ago while learning full stack web dev before ChatGPT was a thing and now whaddya know, what took us months to code now just takes about a day. Granted, what we made wasn't that sophisticated: A chatbot that asks a series of questions from a database and then recommends books by copy pasting the entire conversation history into a Google Books search bar.
+ 1. This whole started out as a vibe-coding what-if exercise: My friends and I made a [chatbot a long time ago](https://holistudio.github.io/2018/05/06/omni/) while learning full stack web dev before ChatGPT was a thing and now whaddya know, what took us months to code now just takes about a day. Granted, what we made wasn't that sophisticated: A chatbot that asks a series of questions from a database and then recommends books by copy pasting the entire conversation history into a Google Books search bar.
  2. Once this thing was vibe-coded I saw this as an opportunity to learn LangChain/LangGraph and replace the "questions database back end" with an LLM
 
 Most recently, I've been toying around with an `agent.py` coded using LangChain and then using a separate notebook `chat.ipynb` to simulate the front end.
