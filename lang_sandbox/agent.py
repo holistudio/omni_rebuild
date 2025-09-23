@@ -120,6 +120,15 @@ class ChatAgent(object):
                 MessagesPlaceholder(variable_name="messages"),
             ]
         )
+        self.rec_prompt = ChatPromptTemplate.from_messages(
+            [
+                (
+                    "system", 
+                    "You are a bibliophile and librarian who wants everyone to enjoy reading books. Given the conversation history with the user, generate a list of book titles and authors that the user will most likely want to read. Conversation: {chat_history}"
+                ),
+                MessagesPlaceholder(variable_name="messages"),
+            ]
+        )
         pass
 
     # Define the function that calls the model
@@ -217,6 +226,32 @@ class ChatAgent(object):
         response = self.model.invoke(prompt)
         # print(response)
         state["search_query"] = response.content
+        # return {"search_query": [response.content]}
+        return state
+    
+    def rec_books(self, state: State):
+        # print("# make_search_query()")
+        trimmed_messages = self.trimmer.invoke(state["messages"])
+        # get conversation history
+        chat_history = "\n".join(
+            f"{m.type.capitalize()}: {m.content}" for m in trimmed_messages
+        )
+        prompt = self.rec_prompt.invoke(
+            {"chat_history": chat_history,
+             "messages": [HumanMessage(
+                 """
+                 What: Based on the entire conversation, recommend me 12 books in the format `{"title": "string1", "author": "string2"}`
+                 Bounds:
+                  - Stick to books that you are confident exist in the real world (classic novels, modern best sellers)
+                 Success:
+                  - Finding at least 12 books I might like with your generated search terms.
+                 """
+             )]}
+        )
+        # print(prompt)
+        response = self.model.invoke(prompt)
+        # print(response)
+        state["book_recs"] = response.content
         # return {"search_query": [response.content]}
         return state
     
