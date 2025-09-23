@@ -196,7 +196,9 @@ class ChatAgent(object):
         if self.q_count > 10:
             with open('search_prompt.txt', 'w', encoding='utf-8') as pf:
                 pf.write(output["search_query"])
-            self.search_books()
+            # override response with the rec_node
+            response = output["book_recs"]
+            # self.search_books()
         # increment query counter
         self.q_count += 1
         return response, output["messages"], output["search_query"]
