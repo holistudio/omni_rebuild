@@ -78,8 +78,12 @@ class ChatAgent(object):
         self.workflow.add_edge(START, "chat_node")
         self.workflow.add_node("chat_node", self.call_chatbot)
         self.workflow.add_node("search_node", self.make_search_query)
+        self.workflow.add_node("rec_node", self.rec_books)
+
+
         self.workflow.add_edge("chat_node","search_node")
-        self.workflow.add_edge("search_node", END)
+        self.workflow.add_edge("search_node", "rec_node")
+        self.workflow.add_edge("rec_node", END)
 
         # Add memory
         memory = MemorySaver()
