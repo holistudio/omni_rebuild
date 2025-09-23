@@ -3,6 +3,31 @@
 A log of project progress and specific lessons learned.
 
 ## Log
+### 2025-09-22
+
+The LLM now autommatically recommends a list of book titles and authors at the end of the conversation.
+
+This is done by adding a node to the StateGraph
+
+Before:
+```
+START -> chat_node -> search_node -> END
+```
+ - `chat_node`: Various system messages ask the LLM to ask either general or specific questions to the user
+ - `search_node`: Generates a search engine query of keywords describing the user's tastes via `make_search_query()` function. This can also just be seen as "interpreting" the LLM's current understading of the user's taste.
+ - It may be a lot of LLM-inference-runtime but this could be cool for tracking the LLM Agent's understanding of the user as the conversation progresses.
+
+After:
+```
+START -> chat_node -> search_node -> rec_node -> END
+```
+ - `rec_node`: Generates a list of book title and authors in a json format via `rec_books()` function.
+ - This is something that I think only needs to be done once after the LLM Agent has asked 10 questions or so.
+ - But currently `rec_node` is being invoked every time the user answers the LLM Agent's question.
+
+So I may need to revisit this graph (somehow add a gate?) so that the last node isn't invoked until some boolean conditon is true.
+
+That's it for now. Will look into LangGraph/LangChain later.
 
 ### 2025-09-17
 
