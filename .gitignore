@@ -1,1 +1,55 @@
+# --- Flask ---
+instance/
+.webassets-cache
+flask_session/
+ 
+# --- LangGraph / LangChain ---
+# Checkpoint databases if using SQLite persistence
+*.db
+*.sqlite
+*.sqlite3
+langgraph.json
+ 
+# --- Runtime Data (JSON file storage) ---
+# These are ephemeral session artifacts, not source code
+backend/data/conversations/
+backend/data/search_results/
+backend/data/recommendations/
+ 
+# --- Node / Frontend ---
+node_modules/
+frontend/dist/
+frontend/.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+ 
+# --- TypeScript ---
+*.js.map
+*.tsbuildinfo
+ 
+# --- esbuild ---
+# dist/ is already covered above; explicitly ignore any esbuild metafiles
+*.esbuild-meta.json
+ 
+# --- Editors & IDEs ---
+.vscode/
+!.vscode/extensions.json   # OK to share recommended extensions
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+ 
+# --- WSL2 / OS ---
+.directory
+desktop.ini
+ 
+# --- Logs ---
+*.log
+logs/
+ 
+# --- draw.io ---
 *.bkp
