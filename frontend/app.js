@@ -26,10 +26,6 @@ async function handleSend() {
   const text = textarea.value.trim();
   if (!text) return;
 
-  const replyFn = responses[Math.min(turn, responses.length - 1)];
-  const reply = replyFn(text);
-  turn++;
-
   // Clear input immediately
   textarea.value = "";
 
