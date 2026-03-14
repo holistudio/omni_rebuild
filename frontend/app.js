@@ -22,7 +22,7 @@ let sessionId = "default"
 
 // ── Send handler ────────────────────────────────────────
 
-function handleSend() {
+async function handleSend() {
   const text = textarea.value.trim();
   if (!text) return;
 
