@@ -17,6 +17,8 @@ const messageArea  = document.querySelector(".message-area");
 const textarea     = document.getElementById("user-input");
 const sendBtn      = document.getElementById("send-btn");
 
+// conversation session_id
+let sessionId = "default"
 
 // ── Send handler ────────────────────────────────────────
 
