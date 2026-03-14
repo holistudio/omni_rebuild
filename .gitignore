@@ -1,3 +1,36 @@
+# =============================================================================
+# Project Omnibot — .gitignore
+# Stack: Python/Flask, Conda, LangGraph, TypeScript, esbuild, WSL2
+# =============================================================================
+ 
+# --- Secrets & Environment ---
+.env
+.env.*
+!.env.example
+ 
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.manifest
+*.spec
+ 
+# --- Conda / Virtual Environments ---
+# Don't commit the env itself — use requirements.txt to reproduce it
+/env/
+/venv/
+/.venv/
+# If someone runs `conda env export > environment.yml` locally, don't commit it
+# unless you intentionally want to pin the full env
+environment.yml
+ 
 # --- Flask ---
 instance/
 .webassets-cache
