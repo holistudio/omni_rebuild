@@ -51,3 +51,8 @@ def chat():
         "session_id": session_id,
         "response": response.content
     })
+
+if __name__ == "__main__":
+    # enable Flask auto-reloader 
+    # and error pages during development
+    app.run(debug=True, port=5000)
