@@ -67,6 +67,10 @@ async function handleSend() {
       messageArea.classList.add("fade-in");
     }, 280);
   }
+
+  // Re-enable send button and focus input
+  sendBtn.disabled = false;
+  textarea.focus();
 }
 
 // Click or Enter to send
