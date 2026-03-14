@@ -9,6 +9,9 @@
  *  4. Only the current bot message is visible at a time.
  */
 
+// point to Flask development server
+const API_BASE = "http://localhost:5000/api"
+
 const botMessageEl = document.getElementById("bot-message");
 const messageArea  = document.querySelector(".message-area");
 const textarea     = document.getElementById("user-input");
