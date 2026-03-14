@@ -29,6 +29,9 @@ async function handleSend() {
   // Clear input immediately
   textarea.value = "";
 
+  // Disable send button
+  sendBtn.disabled = true;
+
   // Fade out current message
   messageArea.classList.remove("fade-in");
   messageArea.classList.add("fade-out");
