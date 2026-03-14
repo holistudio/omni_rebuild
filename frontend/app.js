@@ -36,12 +36,37 @@ async function handleSend() {
   messageArea.classList.remove("fade-in");
   messageArea.classList.add("fade-out");
 
-  setTimeout(() => {
-    botMessageEl.textContent = reply;
-    messageArea.classList.remove("fade-out");
-    messageArea.classList.add("fade-in");
-    textarea.focus();
-  }, 280);
+  
+  try {
+    // Send POST request to chatbot/LLM
+    const res = await fetch(`${API_BASE}/chat`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({ session_id: sessionId, message: text}),
+    })
+
+    // Response from LLM
+    const data = await res.json();
+    sessionId = data.session_id;
+
+    // Display LLM response
+    setTimeout(() => {
+      botMessageEl.textContent = data.response;
+      messageArea.classList.remove("fade-out");
+      messageArea.classList.add("fade-in");
+      textarea.focus();
+    }, 280);
+
+  } catch (err) {
+    console.error("Error: ", err);
+
+    // Display error message
+    setTimeout(() => {
+      botMessageEl.textContent = "Sorry, something went wrong.";
+      messageArea.classList.remove("fade-out");
+      messageArea.classList.add("fade-in");
+    }, 280);
+  }
 }
 
 // Click or Enter to send
