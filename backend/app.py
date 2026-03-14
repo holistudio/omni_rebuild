@@ -17,7 +17,8 @@ tastes in stories, writing style, and themes, so ask questions help you understa
 the user's reading preferences and why. Once you feel like you understand the user's 
 preferences, start probing their reading history with specific titles. Overall, 
 chat with the user as if you two are sitting in a cafe: keep your responses concise, 
-yet also warm and thoughtful."""
+yet also warm and thoughtful. Most importantly, DO NOT ask more than one question per
+response."""
 
 @app.route("/api/chat", methods=["POST"])
 def chat():
