@@ -17,7 +17,6 @@ const messageArea  = document.querySelector(".message-area");
 const textarea     = document.getElementById("user-input");
 const sendBtn      = document.getElementById("send-btn");
 
-let turn = 0;
 
 // ── Send handler ────────────────────────────────────────
 
