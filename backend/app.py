@@ -1,3 +1,5 @@
+import uuid
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from langchain_core.messages import SystemMessage, HumanMessage
@@ -32,6 +34,23 @@ chat with the user as if you two are sitting in a cafe: keep your responses conc
 yet also warm and thoughtful. Keep it to 2-3 sentences. 
 Most importantly, DO NOT ask more than one question per
 response. Do not use em-dashes ('-'), use commas instead!"""
+
+def get_or_create_session(session_id: str | None) -> tuple[str, OmniBotState]:
+    if session_id and session_id in sessions:
+        return session_id, sessions[session_id]
+    
+    new_id = session_id or str(uuid.uuid4())
+
+    state: OmniBotState = {
+        "messages": [],
+        "search_results": [],
+        "recommendations": [],
+        "search_queries_tried": 0,
+        "num_books_found": 0,
+        "phase": chat
+    }
+    sessions[new_id] = state
+    return new_id, state
 
 @app.route("/api/intro", methods=["POST"])
 def intro():
