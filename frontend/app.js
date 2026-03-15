@@ -79,23 +79,49 @@ async function handleSend() {
     const data = await res.json();
     sessionId = data.session_id;
 
-    // Display LLM response
-    setTimeout(() => {
-      botMessageEl.textContent = data.response;
-      messageArea.classList.remove("fade-out");
-      messageArea.classList.add("fade-in");
-      textarea.focus();
-    }, 280);
+    if (data.phase === "search") {
+      // Display searching message
+      showBotMessage(data.response);
 
+      setTimeout(async () => {
+        messageArea.classList.remove("fade-out");
+        messageArea.classList.add("fade-in");
+
+        // Send another POST request to chatbot/LLM
+        const finalRes = await fetch(`${API_BASE}/chat`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json"},
+          body: JSON.stringify({ session_id, sessionId, message: ""}),
+        });
+        const finalData = await finalRes.json();
+
+        // If the phase is now done with a recommendation_url
+        if (finalData.phase === "done" && finalData.recommendations_url) {
+          // Display response with link
+          showBotHtml(finalData.response);
+
+          // Disable user input
+          textarea.disabled = true;
+          sendBtn.disabled = true;
+        } else {
+          // Fall back and just show the LLM response
+          showBotMessage(finalData.response);
+        }
+      }, 1500);
+    } else if (data.phase === "done" && data.recommendations_url) {
+      // Fast path recommendations case
+      showBotHtml(data.response);
+      // Disable user input
+      textarea.disabled = true;
+      sendBtn.disabled = true;
+    } else {
+      showBotMessage(data.response);
+    }
   } catch (err) {
     console.error("Error: ", err);
 
     // Display error message
-    setTimeout(() => {
-      botMessageEl.textContent = "Sorry, something went wrong.";
-      messageArea.classList.remove("fade-out");
-      messageArea.classList.add("fade-in");
-    }, 280);
+    showBotMessage("Sorry, something went wrong.");
   }
 
   // Re-enable send button and focus input
