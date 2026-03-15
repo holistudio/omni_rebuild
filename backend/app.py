@@ -2,7 +2,7 @@ import uuid
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from langchain_core.messages import SystemMessage, HumanMessage
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 
 from graph import build_graph, OmniBotState
 
@@ -85,32 +85,50 @@ def chat():
 
     # data: { "session_id": "optional", "message": "user text" }
     data = request.get_json() 
-    session_id = data.get("session_id", "default")
     user_message = data.get("message", "")
-    
-    # create new conversation history if new session
-    if session_id not in sessions:
-        sessions[session_id] = []
-    
-    # load conversation history
-    history = sessions[session_id]
 
+    # load session and state
+    session_id, state = get_or_create_session(data.get("session_id"))
+    
     # add user message
-    history.append(HumanMessage(user_message))
+    state["messages"].append(HumanMessage(content=user_message))
 
-    # add system prompt to the "top" of the conversation history
-    messages = [SystemMessage(content=SYSTEM_PROMPT)] + history
+    # call the LLM via running the graph with the entire state
+    result = omnibot_graph.invoke(state)
 
-    # call the LLM with "wrapped" message (System/Human/AIMessage)
-    llm = get_llm() 
-    response = llm.invoke(messages)
+    # update session state
+    sessions[session_id] = result
 
-    # store LLM response (AIMessage) in history
-    history.append(response)
+    # extract last AIMessage
+    ai_messages = [m for m in result["messages"] if isinstance(m, AIMessage)]
+    last_response = ai_messages[-1].content if ai_messages else ""
+
+    # clean out the [READY_TO_SEARCH] marker from response display to user
+    display_response = last_response.replace("[READY_TO_SEARCH]","").strip()
+
+    # determine the current phase
+    phase = result.get("phase", "chat")
+    
+    # compose response
+    recommendations_url = None
+
+    # if the recommendations list is populated
+    if result.get("recommendations"):
+        phase = "done"
+        recommendations_url = f"recommendations.html?sessionid={session_id}"
+        display_response = f'Great, <a href="{recommendations_url}">here</a> are my recommendations for you!'
+    elif "[READY_TO_SEARCH]" in last_response:
+        phase = "search"
+        if not display_response:
+            display_response = "Great, I understand what you're into, let me look up some books..."
+    
+    # TODO: save JSON files
 
     return jsonify({
         "session_id": session_id,
-        "response": response.content
+        "response": display_response,
+        "phase": phase,
+        "recommendations_url": recommendations_url,
     })
 
 if __name__ == "__main__":
