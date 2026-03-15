@@ -20,6 +20,36 @@ const sendBtn      = document.getElementById("send-btn");
 // conversation session_id
 let sessionId = "default"
 
+// ── Fetch LLM intro on page load ───────────────────────
+
+async function fetchIntro() {
+  // Temporary loading state
+  botMessageEl.textContent = "...just a sec!";
+
+  try {
+    // Send POST request to intro end-point
+    const res = await fetch(`${API_BASE}/intro`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({ session_id: sessionId }),
+    })
+
+    // Intro greeting from LLM
+    const data = await res.json();
+    sessionId = data.session_id;
+
+    // Display LLM intro
+    setTimeout(() => {
+      botMessageEl.textContent = data.response;
+      messageArea.classList.remove("fade-out");
+      messageArea.classList.add("fade-in");
+      textarea.focus();
+    }, 280);
+  } catch (err) {
+    console.error("Intro fetch error:", err);
+    botMessageEl.textContent = "Hi! I'm Omnibot. What kind of books do you enjoy?";
+  }
+}
 // ── Send handler ────────────────────────────────────────
 
 async function handleSend() {
@@ -81,6 +111,9 @@ textarea.addEventListener("keydown", (e) => {
     handleSend();
   }
 });
+
+// On page load fetch the LLM intro
+fetchIntro();
 
 // Focus input on load
 textarea.focus();
