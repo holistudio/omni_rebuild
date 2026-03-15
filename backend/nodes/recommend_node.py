@@ -1,4 +1,6 @@
 import json
+import re
+
 from langchain_core.messages import SystemMessage
 
 from config import get_llm
@@ -39,11 +41,12 @@ def recommend_node(state: dict) -> dict:
     # parse the LLM response as a JSON
     try:
         content = response.content.strip()
-        if content.startswith("```"):
-            content = content.split("\n",1)[1].rsplit("```", 1)[0]
+        # Extract JSON array from anywhere in the response
+        json_match = re.search(r'\[.*\]', content, re.DOTALL)
+        if json_match:
+            content = json_match.group(0)
         recommendations = json.loads(content)
     except json.JSONDecodeError:
-        # fallback just give the LLM raw text as the 'recommendation'
         recommendations = [{"title": "Error", "recommendation": response.content}]
 
     return {
