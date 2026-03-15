@@ -18,7 +18,7 @@ const textarea     = document.getElementById("user-input");
 const sendBtn      = document.getElementById("send-btn");
 
 // conversation session_id
-let sessionId = "default"
+let sessionId = null;
 
 // ── Fetch LLM intro on page load ───────────────────────
 
