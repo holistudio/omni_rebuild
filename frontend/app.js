@@ -1,12 +1,12 @@
 /**
- * Omnibot — fake LLM chat logic
+ * Omnibot — real LLM chat via Flask backend
  *
- * Behaviour (matching wireframe flow):
- *  1. Bot shows initial greeting: "Hi! I'm Omnibot"
+ * Behaviour:
+ *  1. On page load, fetches an LLM-generated intro message from /api/intro.
  *  2. User types a message and presses Enter or clicks send.
- *  3. The screen transitions: user message disappears,
- *     bot message area fades to the next response.
- *  4. Only the current bot message is visible at a time.
+ *  3. The message is sent to the Flask backend at /api/chat.
+ *  4. The bot's response fades in, replacing the previous message.
+ *  5. Only the current bot message is visible at a time.
  */
 
 // point to Flask development server
