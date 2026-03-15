@@ -23,13 +23,13 @@ class OmnibotState(TypedDict):
     # books found from queries
     num_books_found: int
 
-    # phase of agent in user story: "chat", "search", or "recommend"
+    # phase of agent in user story: "chatting", "searching", or "done"
     phase: str
 
 def should_continue_chatting(state: OmnibotState) -> str:
     last_message = state["messages"][-1]
     if "[READY_TO_SEARCH]" in last_message.content:
-        return "search"
+        return "searching"
     return "chat_with_user"
 
 def build_graph():
@@ -45,7 +45,7 @@ def build_graph():
         "chat",
         should_continue_chatting,
         {
-            "search": "search",
+            "searching": "search",
             "chat_with_user": END, # pause / loop back to START
         }
     )

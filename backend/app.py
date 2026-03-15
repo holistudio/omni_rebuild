@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 
-from graph import build_graph, OmniBotState
+from graph import build_graph, OmnibotState
 
 app = Flask(__name__)
 CORS(app)
@@ -13,7 +13,7 @@ CORS(app)
 omnibot_graph = build_graph()
 
 # conversation storage, keys=session_id, vals=states
-sessions: dict[str, OmniBotState] = {}
+sessions: dict[str, OmnibotState] = {}
 
 INTRO_SYSTEM_PROMPT = """You are Omnibot. Imagine you are a warm and welcoming librarian 
 who works at the world's largest library and are eager to share your love and excitement 
@@ -34,19 +34,19 @@ yet also warm and thoughtful. Keep it to 2-3 sentences.
 Most importantly, DO NOT ask more than one question per
 response. Do not use em-dashes ('-'), use commas instead!"""
 
-def get_or_create_session(session_id: str | None) -> tuple[str, OmniBotState]:
+def get_or_create_session(session_id: str | None) -> tuple[str, OmnibotState]:
     if session_id and session_id in sessions:
         return session_id, sessions[session_id]
     
     new_id = session_id or str(uuid.uuid4())
 
-    state: OmniBotState = {
+    state: OmnibotState = {
         "messages": [],
         "search_results": [],
         "recommendations": [],
         "search_queries_tried": 0,
         "num_books_found": 0,
-        "phase": chat
+        "phase": "chatting",
     }
     sessions[new_id] = state
     return new_id, state
@@ -60,20 +60,17 @@ def intro():
     # create new session
     _ , state = get_or_create_session(session_id)
 
-    # load conversation history
-    history = sessions[session_id]
-    history.append(HumanMessage(content="..."))
-
-    # add system prompt to the "top" of the conversation history
-    messages = [SystemMessage(content=SYSTEM_PROMPT)] + history
+    # add system prompt to the "top" of the blank conversation history
+    messages = [SystemMessage(content=INTRO_SYSTEM_PROMPT), HumanMessage(content="...")]
 
     # call the LLM with "intro" message
     from config import get_llm
     llm = get_llm() 
     response = llm.invoke(messages)
 
-    # store LLM response (AIMessage) in history
-    history.append(response)
+    # add response to state
+    state["messages"].append(response)
+    sessions[session_id] = state
 
     return jsonify({
         "session_id": session_id,
@@ -107,7 +104,7 @@ def chat():
     display_response = last_response.replace("[READY_TO_SEARCH]","").strip()
 
     # determine the current phase
-    phase = result.get("phase", "chat")
+    phase = result.get("phase", "chatting")
     
     # compose response
     recommendations_url = None
@@ -118,12 +115,18 @@ def chat():
         recommendations_url = f"recommendations.html?sessionid={session_id}"
         display_response = f'Great, <a href="{recommendations_url}">here</a> are my recommendations for you!'
     elif "[READY_TO_SEARCH]" in last_response:
-        phase = "search"
+        phase = "searching"
         if not display_response:
             display_response = "Great, I understand what you're into, let me look up some books..."
     
     # TODO: save JSON files
 
+    print({
+        "session_id": session_id,
+        "response": display_response,
+        "phase": phase,
+        "recommendations_url": recommendations_url,
+    })
     return jsonify({
         "session_id": session_id,
         "response": display_response,

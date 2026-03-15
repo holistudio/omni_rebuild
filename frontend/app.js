@@ -31,7 +31,7 @@ async function fetchIntro() {
     const res = await fetch(`${API_BASE}/intro`, {
       method: "POST",
       headers: { "Content-Type": "application/json"},
-      body: JSON.stringify({ session_id: sessionId }),
+      body: JSON.stringify({}),
     });
 
     // Intro greeting from LLM
@@ -79,7 +79,7 @@ async function handleSend() {
     const data = await res.json();
     sessionId = data.session_id;
 
-    if (data.phase === "search") {
+    if (data.phase === "searching") {
       // Display searching message
       showBotMessage(data.response);
 
