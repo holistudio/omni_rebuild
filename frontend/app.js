@@ -103,6 +103,23 @@ async function handleSend() {
   textarea.focus();
 }
 
+// Message display functions
+function showBotMessage(text) {
+  setTimeout(() => {
+    botMessageEl.textContent = text;
+    messageArea.classList.remove("fade-out");
+    messageArea.classList.add("fade-in");
+  }, 280);
+}
+
+function showBotHtml(html) {
+  setTimeout(() => {
+    botMessageEl.innerHTML = html;
+    messageArea.classList.remove("fade-out");
+    messageArea.classList.add("fade-in");
+  }, 280);
+}
+
 // Click or Enter to send
 sendBtn.addEventListener("click", handleSend);
 textarea.addEventListener("keydown", (e) => {
