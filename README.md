@@ -8,6 +8,13 @@ An agent that makes book recommendations based on conversations with you about y
    - Claude API key
    - Node.js
 
+    Create a `.env` file in `backend/`:
+
+    ```env
+    ANTHROPIC_API_KEY=sk-ant-your-key-here
+    LLM_PROVIDER=anthropic
+    ```
+    
 1. Start a virtual environment
 
     ```bash
