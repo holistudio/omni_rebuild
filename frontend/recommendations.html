@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Recommendations — Omnibot</title>
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
+      background: #ffffff;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: #1a1a1a;
+    }
+
+    .recommendations-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 48px 32px 64px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 40px;
+      border-bottom: 1.5px solid #ccc;
+      padding-bottom: 16px;
+    }
+
+    .book-card {
+      margin-bottom: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .book-card:last-child {
+      border-bottom: none;
+    }
+
+    .book-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .book-meta {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .book-summary {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-top: 12px;
+      color: #2a2a2a;
+    }
+
+    .book-recommendation {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-top: 10px;
+      color: #444;
+    }
+
+    .loading-message {
+      font-size: 18px;
+      color: #888;
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .error-message {
+      font-size: 18px;
+      color: #a33;
+      text-align: center;
+      margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+  <div class="recommendations-container">
+    <div id="content">
+      <p class="loading-message">Loading your recommendations...</p>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = "http://localhost:5000/api";
+
+    async function loadRecommendations() {
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get("session_id");
+
+      if (!sessionId) {
+        document.getElementById("content").innerHTML =
+          '<p class="error-message">No session ID provided.</p>';
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          `${API_BASE}/recommendations/${encodeURIComponent(sessionId)}`
+        );
+
+        if (!res.ok) {
+          throw new Error(`Server returned ${res.status}`);
+        }
+
+        const data = await res.json();
+        const recs = data.recommendations || [];
+
+        if (recs.length === 0) {
+          document.getElementById("content").innerHTML =
+            '<p class="error-message">No recommendations found for this session.</p>';
+          return;
+        }
+
+        renderRecommendations(recs);
+      } catch (err) {
+        console.error("Error loading recommendations:", err);
+        document.getElementById("content").innerHTML =
+          '<p class="error-message">Failed to load recommendations. Is the backend running?</p>';
+      }
+    }
+
+    function renderRecommendations(recs) {
+      let html = '<h1 class="page-title">Your Book Recommendations</h1>';
+
+      recs.forEach((rec) => {
+        html += '<div class="book-card">';
+        html += `<h2 class="book-title">${escapeHtml(rec.title || "Untitled")}</h2>`;
+
+        if (rec.author) {
+          html += `<p class="book-meta">Author: ${escapeHtml(rec.author)}</p>`;
+        }
+        if (rec.year) {
+          html += `<p class="book-meta">Year: ${escapeHtml(String(rec.year))}</p>`;
+        }
+        if (rec.genre) {
+          html += `<p class="book-meta">Genre: ${escapeHtml(rec.genre)}</p>`;
+        }
+        if (rec.summary) {
+          html += `<p class="book-summary">Summary: ${escapeHtml(rec.summary)}</p>`;
+        }
+        if (rec.recommendation) {
+          html += `<p class="book-recommendation">Recommendation: ${escapeHtml(rec.recommendation)}</p>`;
+        }
+
+        html += "</div>";
+      });
+
+      document.getElementById("content").innerHTML = html;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    loadRecommendations();
+  </script>
+</body>
+</html>
