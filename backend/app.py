@@ -4,7 +4,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from langchain_core.messages import SystemMessage, HumanMessage
 
-from config import get_llm
 from graph import build_graph, OmniBotState
 
 app = Flask(__name__)
@@ -56,8 +55,10 @@ def get_or_create_session(session_id: str | None) -> tuple[str, OmniBotState]:
 def intro():
     # data: { "session_id": "optional", "message": "user text" }
     data = request.get_json() 
-    session_id = data.get("session_id", "default")
-    sessions[session_id] = []
+    session_id = data.get("session_id") or str(uuid.uuid4())
+    
+    # create new session
+    _ , state = get_or_create_session(session_id)
 
     # load conversation history
     history = sessions[session_id]
@@ -66,7 +67,8 @@ def intro():
     # add system prompt to the "top" of the conversation history
     messages = [SystemMessage(content=SYSTEM_PROMPT)] + history
 
-    # call the LLM with "wrapped" message (System/Human/AIMessage)
+    # call the LLM with "intro" message
+    from config import get_llm
     llm = get_llm() 
     response = llm.invoke(messages)
 
