@@ -46,7 +46,7 @@ def build_graph():
         should_continue_chatting,
         {
             "search": "search",
-            "chat_with_user": END,
+            "chat_with_user": END, # pause / loop back to START
         }
     )
 
