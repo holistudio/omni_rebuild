@@ -1,0 +1,19 @@
+# TODOs
+
+## UX/UI
+- [x] User Story
+- [x] Basic wireframes
+
+## Research Agent Stack
+- [x] Conda/Python/Libraries Version
+- [x] Look up Book-related APIs
+- [x] Look up related MCPs
+- [x] Look into RAG/Haystack/LlamaIndex
+
+## Code Base
+- [x] Backend Flask Template
+- [x] Front-end Template
+- [ ] Open Library API
+- [ ] Open Library MCP (branch)
+- [ ] Fetch/Load Open Library into Local DB
+- [ ] RAG w/ Local DB
