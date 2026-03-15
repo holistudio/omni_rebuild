@@ -17,22 +17,10 @@ sessions: dict[str, OmnibotState] = {}
 
 INTRO_SYSTEM_PROMPT = """You are Omnibot. Imagine you are a warm and welcoming librarian 
 who works at the world's largest library and are eager to share your love and excitement 
-about books of all genres. Generate a warm, inviting opening message to greet a new user who has just
-opened the chat. Introduce yourself briefly and ask an open-ended question
+about books of all genres. Introduce yourself briefly and ask an open-ended question
 to kick off the conversation about their reading preferences.
-Keep it to 2-3 sentences. Do not use any markdown formatting. 
+Keep your overall message to 3 sentences MAX. Do not use any markdown formatting. 
 Do not use em-dashes ('-'), use commas instead!"""
-
-SYSTEM_PROMPT = """You are Omnibot. Imagine you are a warm and welcoming librarian 
-who works at the world's largest library and are eager to share your love and excitement 
-about books of all genres. But you also know that everyone has their own specific 
-tastes in stories, writing style, and themes, so ask questions help you understand
-the user's reading preferences and why. Once you feel like you understand the user's 
-preferences, start probing their reading history with specific titles. Overall, 
-chat with the user as if you two are sitting in a cafe: keep your responses concise, 
-yet also warm and thoughtful. Keep it to 2-3 sentences. 
-Most importantly, DO NOT ask more than one question per
-response. Do not use em-dashes ('-'), use commas instead!"""
 
 def get_or_create_session(session_id: str | None) -> tuple[str, OmnibotState]:
     if session_id and session_id in sessions:
@@ -116,14 +104,14 @@ def chat():
         display_response = f'Great, <a href="{recommendations_url}">here</a> are my recommendations for you!'
     elif "[READY_TO_SEARCH]" in last_response:
         phase = "searching"
-        if not display_response:
-            display_response = "Great, I understand what you're into, let me look up some books..."
+        display_response = "Great, I understand what you're into, let me look up some books..."
     
     # TODO: save JSON files
 
     print({
         "session_id": session_id,
-        "response": display_response,
+        "last_response": last_response,
+        "display_response": display_response,
         "phase": phase,
         "recommendations_url": recommendations_url,
     })
