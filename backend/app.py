@@ -112,7 +112,7 @@ def chat():
     # if the recommendations list is populated
     if result.get("recommendations"):
         phase = "done"
-        recommendations_url = f"recommendations.html?sessionid={session_id}"
+        recommendations_url = f"recommendations.html?session_id={session_id}"
         display_response = f'Great, <a href="{recommendations_url}">here</a> are my recommendations for you!'
     elif "[READY_TO_SEARCH]" in last_response:
         phase = "searching"
