@@ -50,7 +50,8 @@ def build_graph():
         }
     )
 
-    # TODO: search conditional edges
+    # TODO: add search conditional edges
+    graph.add_edge("search", "recommend")
 
     graph.add_edge("recommend", END)
 
