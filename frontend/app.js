@@ -10,7 +10,7 @@
  */
 
 // point to Flask development server
-const API_BASE = "http://localhost:5000/api"
+const API_BASE = "http://localhost:5000/api";
 
 const botMessageEl = document.getElementById("bot-message");
 const messageArea  = document.querySelector(".message-area");
@@ -32,7 +32,7 @@ async function fetchIntro() {
       method: "POST",
       headers: { "Content-Type": "application/json"},
       body: JSON.stringify({ session_id: sessionId }),
-    })
+    });
 
     // Intro greeting from LLM
     const data = await res.json();
@@ -73,7 +73,7 @@ async function handleSend() {
       method: "POST",
       headers: { "Content-Type": "application/json"},
       body: JSON.stringify({ session_id: sessionId, message: text}),
-    })
+    });
 
     // Response from LLM
     const data = await res.json();
