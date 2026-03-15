@@ -134,6 +134,15 @@ def chat():
         "recommendations_url": recommendations_url,
     })
 
+@app.route("/api/recommendations/<session_id>", methods=["GET"])
+def get_recommendations(session_id: str):
+    # fetch saved recommendations in memory
+    if session_id in sessions:
+        return jsonify({
+            "recommendations": sessions[session_id].get("recommendations", [])
+        })
+    return jsonify({"error": "Session not found"}), 404
+
 if __name__ == "__main__":
     # enable Flask auto-reloader 
     # and error pages during development
