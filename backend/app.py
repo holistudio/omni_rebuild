@@ -3,12 +3,16 @@ from flask_cors import CORS
 from langchain_core.messages import SystemMessage, HumanMessage
 
 from config import get_llm
+from graph import build_graph, OmniBotState
 
 app = Flask(__name__)
 CORS(app)
 
-# conversation storage, keys=session_id
-sessions: dict[str, list] = {}
+# compile LangGraph at startup
+omnibot_graph = build_graph()
+
+# conversation storage, keys=session_id, vals=states
+sessions: dict[str, OmniBotState] = {}
 
 INTRO_SYSTEM_PROMPT = """You are Omnibot. Imagine you are a warm and welcoming librarian 
 who works at the world's largest library and are eager to share your love and excitement 
