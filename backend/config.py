@@ -11,7 +11,7 @@ def get_llm():
             # model = "claude-haiku-4-5",
             model="claude-haiku-4-5-20251001",
             temperature=0.7,
-            max_tokens=1024,
+            max_tokens=4096,
         )
     # TODO: elif provider == "ollama":
     else:
