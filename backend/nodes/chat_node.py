@@ -16,6 +16,7 @@ Keep the conversation warm and curious. Most importantly, DO NOT ask more than o
 response. Do not use em-dashes ('-'), use commas instead!
 
 After 5-10 exchanges when you have a good picture of their preferences,
+summarize the user's preferences back to them. If they agree,
 respond with EXACTLY the text: [READY_TO_SEARCH]
 Do NOT include [READY_TO_SEARCH] until you have enough information."""
 
