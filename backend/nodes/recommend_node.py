@@ -24,10 +24,18 @@ Return ONLY valid JSON. No markdown, no code fences, just the array."""
 def recommend_node(state: dict) -> dict:
     llm = get_llm()
 
-    # TODO: use search results from Open Library API
-    search_context = (
-        "No search results are available. Use your own knowledge of books to recommend 5 books based on the conversation history."
-    )
+    # use search results from Open Library API
+    if state.get("search_results"):
+        search_data = json.dumps(state["search_results"], indent=2)
+        search_context = (
+            "Use the following search results as your primary source for recommendations. "
+            "Pick the 5 best matches from these results:\n"
+            f"{search_data}"
+        )
+    else:
+        search_context = (
+            "No search results are available. Use your own knowledge of books to recommend 5 books based on the conversation history."
+        )
 
     # insert search results into context window
     prompt = RECOMMEND_SYSTEM_PROMPT.format(search_context=search_context)
