@@ -18,7 +18,7 @@ class OmnibotState(TypedDict):
     recommendations: list[dict]
 
     # track number of search query attempts to API
-    search_queries_tried: int
+    search_attempts_tried: int
 
     # books found from queries
     num_books_found: int
@@ -34,6 +34,12 @@ def should_continue_chatting(state: OmnibotState) -> str:
     if "[READY_TO_SEARCH]" in last_message.content:
         return "searching"
     return "chat_with_user"
+
+def should_search_again(state: OmnibotState) -> str:
+    if state["num_books_found"] >= 5:
+        return "recommending"
+    if ""
+    else:
 
 def build_graph():
     graph = StateGraph(OmnibotState)
@@ -54,7 +60,14 @@ def build_graph():
     )
 
     # TODO: add search conditional edges
-    graph.add_edge("search", "recommend")
+    graph.add_conditional_edges(
+        "search",
+        should_search_again,
+        {
+            "searching": "search",
+            "recommending": "recommend",
+        }
+    )
 
     graph.add_edge("recommend", END)
 

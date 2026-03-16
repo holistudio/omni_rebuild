@@ -103,7 +103,7 @@ def search_node(state: dict) -> dict:
 
     return {
         "search_results": all_results,
-        "search_queries_tried": state["search_queries_tried"] + 1,
+        "search_attempts_tried": state["search_attempts_tried"] + 1,
         "num_books_found": len(all_results),
         "_titles_tried": titles_already_tried,
         "messages": [],

@@ -32,7 +32,7 @@ def get_or_create_session(session_id: str | None) -> tuple[str, OmnibotState]:
         "messages": [],
         "search_results": [],
         "recommendations": [],
-        "search_queries_tried": 0,
+        "search_attempts_tried": 0,
         "num_books_found": 0,
         "phase": "chatting",
     }
