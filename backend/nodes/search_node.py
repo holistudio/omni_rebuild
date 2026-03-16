@@ -51,7 +51,7 @@ def _generate_book_suggestions(llm, state: dict, titles_already_tried: list[str]
         # remove so that only the list is kept ex: [{"title": "Piranesi", "author": "Susanna Clarke"}]
         content = content.split("\n", 1)[1].rsplit("```", 1)[0].strip()
     print(content)
-    
+
     try:
         suggestions = json.loads(content)
     except json.JSONDecodeError:
@@ -75,9 +75,36 @@ def _generate_book_suggestions(llm, state: dict, titles_already_tried: list[str]
     return valid[:10]
 
 def search_node(state: dict) -> dict:
+    llm = get_llm()
+
+    existing_results= {b["title"] for b in state["search_results"]}
+    titles_already_tried = list(state.get("_titles_tried", []))
+
+    # ask LLM for book suggestions
+    suggesttions = _generate_book_suggestions(llm, state, titles_already_tried)
+
+    # Search Open Library for books
+    new_books = []
+    for suggestion in suggesttions:
+        title = suggestion["title"]
+        author = suggestion["author"]
+
+        titles_already_tried.append(title)
+
+        if title in existing_results:
+            continue
+
+        book = lookup_single_book(title, author)
+        if book and book["title"] not in existing_results:
+            new_books.append(book)
+            existing_results.add(book["title"])
+    
+    all_results = state["search_results"] + new_books
+
     return {
-        "search_results": [],
-        "search_queries_tried": 1,
-        "num_books_found": 0,
+        "search_results": all_results,
+        "search_queries_tried": state["search_queries_tried"] + 1,
+        "num_books_found": len(all_results),
+        "_titles_tried": titles_already_tried,
         "messages": [],
     }
