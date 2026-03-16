@@ -26,6 +26,9 @@ class OmnibotState(TypedDict):
     # phase of agent in user story: "chatting", "searching", or "done"
     phase: str
 
+    # track which books have been searched/attempted on Open Library API
+    _titles_tried: list[str]
+
 def should_continue_chatting(state: OmnibotState) -> str:
     last_message = state["messages"][-1]
     if "[READY_TO_SEARCH]" in last_message.content:
