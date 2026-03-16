@@ -51,6 +51,7 @@ def search_books(query: str, limit: int = 10) -> list[dict]:
         "fields": "key,title,author_name,first_publish_year"
     }
     resp = requests.get(SEARCH_URL, params=params, headers=HEADERS)
+    print(resp.url) # uncomment for debugging
     
     resp.raise_for_status() # raise exception immediately on HTTP error
 
@@ -83,3 +84,10 @@ def search_books(query: str, limit: int = 10) -> list[dict]:
         time.sleep(0.35) # stay with 3 req/sec rate limit
 
     return books
+
+
+def lookup_single_book(title: str, author: str) -> dict | None:
+    # search for a single book by title and author
+    query = f"{title} {author}"
+    results = search_books(query, limit=3) 
+    return results[0] if results else None
