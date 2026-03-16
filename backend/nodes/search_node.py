@@ -34,7 +34,7 @@ def _generate_book_suggestions(llm, state: dict, titles_already_tried: list[str]
         previous_context = ""
     
     # insert previously tried titles if any into system prompt
-    prompt = SEARCH_SYSTEM_PROMPT.format(previous_context)
+    prompt = SEARCH_SYSTEM_PROMPT.format(previous_context=previous_context)
 
     # append system message
     messages = [SystemMessage(content=prompt)] + state["messages"]
