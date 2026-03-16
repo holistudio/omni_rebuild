@@ -26,7 +26,7 @@ An agent that makes book recommendations based on conversations with you about y
 
     ```bash
     cd backend
-    pip install -r requirements.txt
+    (uv) pip install -r requirements.txt
     ```
 
 3. Set up frontend
