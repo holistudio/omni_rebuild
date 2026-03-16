@@ -59,7 +59,7 @@ An agent that makes book recommendations based on conversations with you about y
 
     ```bash
     cd frontend
-    npx esbuild --serve=localhost:3000 --servedir=.
+    python -m http.server 3000
     ```
 
 3. Open browser to `http://localhost:3000`
