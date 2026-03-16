@@ -36,10 +36,15 @@ def should_continue_chatting(state: OmnibotState) -> str:
     return "chat_with_user"
 
 def should_search_again(state: OmnibotState) -> str:
+    # search phase complete after at least 5 books found
     if state["num_books_found"] >= 5:
         return "recommending"
-    if ""
+    
+    # give up searching after 3 attempts
+    if state["search_attempts_tried"] >= 3:
+        return "recommending"
     else:
+        return "searching"
 
 def build_graph():
     graph = StateGraph(OmnibotState)
@@ -59,7 +64,6 @@ def build_graph():
         }
     )
 
-    # TODO: add search conditional edges
     graph.add_conditional_edges(
         "search",
         should_search_again,
