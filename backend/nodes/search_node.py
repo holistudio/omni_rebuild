@@ -81,11 +81,11 @@ def search_node(state: dict) -> dict:
     titles_already_tried = list(state.get("_titles_tried", []))
 
     # ask LLM for book suggestions
-    suggesttions = _generate_book_suggestions(llm, state, titles_already_tried)
+    suggestions = _generate_book_suggestions(llm, state, titles_already_tried)
 
     # Search Open Library for books
     new_books = []
-    for suggestion in suggesttions:
+    for suggestion in suggestions:
         title = suggestion["title"]
         author = suggestion["author"]
 
