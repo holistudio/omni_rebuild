@@ -8,7 +8,7 @@ SEARCH_SYSTEM_PROMPT = """Based on the conversation history below, suggest exact
 real books the user might enjoy. Choose well-known, published books that are likely 
 to exist in the Open Library catalog.
  
-Return ONLY a JSON array of objects, each with "title" and "author" keys.
+Return ONLY one JSON array of objects, each with "title" and "author" keys.
 No markdown, no code fences, no commentary — just the raw JSON array.
  
 Example response:
@@ -18,6 +18,7 @@ Example response:
 ]
  
 Rules:
+- Return ONLY one valid JSON array.
 - Suggest exactly 10 books.
 - Every book must be a real, published work.
 - Vary your picks across sub-genres, time periods, and styles.

@@ -19,7 +19,7 @@ For each book, provide a JSON array with objects containing:
 - "recommendation": a 2-3 sentence personalized explanation of WHY this book 
   is a good fit, referencing SPECIFIC things the user said in the conversation below.
 
-Return ONLY valid JSON. No markdown, no code fences, just the array."""
+Return ONLY one valid JSON array. No markdown, no code fences, just the array."""
 
 def recommend_node(state: dict) -> dict:
     llm = get_llm()
