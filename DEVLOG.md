@@ -1,4 +1,18 @@
 # Development Log
+
+## 2026-03-16
+
+Got Omnibot to work with an Open Library API to get book recommendation results and then switched the model from Claude Haiku to Ollama llama3.1-8bd
+
+My quick observation is that llama3.1's conversation style is a bit different from Claude:
+
+- Claude usually tries to understand the keyword/themes of my interests and rarely suggests or asks if I read a specific work during my conversation
+- Ollama constantly asks "have you read this... or ..." which to me as a newbie reader gets annoying after awhile
+
+The other thing I'm noticing is that since my app relies on the LLM to generate JSON formatted responses for book title, author, etc...well Ollama sometimes doesn't spit out exactly the right format (missing curly brackets and whatnot).
+
+More RAG-related experiments to come later this week, but that's it for now
+
 ## 2026-03-15
 
 "Step 1: Chat" is complete with very rough "LLM-only" versions of Step 2 and 3 completed as well. Basically an LLM alone can perform a "search-and-recommend" function all on its own because it has knowledge of books and can use the entire `conversation history + system prompt` to generate a JSON of recommended book titles, authors, summaries, etc.
