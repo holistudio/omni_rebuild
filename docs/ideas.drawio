@@ -1,1 +1,356 @@
-<mxfile host="Electron" modified="2026-03-12T21:46:40.046Z" agent="5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/20.7.4 Chrome/106.0.5249.199 Electron/21.3.3 Safari/537.36" etag="IAcAm_-28Dt-eNzOqOXZ" version="20.7.4" type="device" pages="2"><diagram id="dpnnAuReYeWUSulbxY7R" name="ux-frontend">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</diagram><diagram id="aBcrcb1TLpI1To-HumuW" name="agent-backend">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</diagram></mxfile>
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.15 Chrome/134.0.6998.205 Electron/35.2.1 Safari/537.36" version="26.2.15" pages="2">
+  <diagram id="dpnnAuReYeWUSulbxY7R" name="ux-frontend">
+    <mxGraphModel dx="5748" dy="2394" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-10" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=72;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="280" y="900" width="1040" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-1" value="&lt;h1&gt;User Story&lt;/h1&gt;&lt;p&gt;&lt;b&gt;1. Chat Page: &lt;/b&gt;Omnibot starts a coversation with the user about books and their specific tastes.&lt;/p&gt;&lt;p&gt;2. Chat Page: After about 10 questions, Omnibot summarizes back to the user their tastes to confirm understanding. (If the user expresses refinements or dissatisfaction, Omnibot asks 3 more questions, then proceeds to next step)&lt;/p&gt;&lt;p&gt;3. Chat Page: Omnibot then says &quot;OK, let me search through books...&quot;&lt;/p&gt;&lt;p&gt;&lt;b&gt;4. Recommendation Page: &lt;/b&gt;List of book title, author, year, genre, summary, and Omnibot specific explanation, citing moments from the conversation to justify.&lt;/p&gt;&lt;p&gt;&lt;i&gt;5. Recommendation Page: User can continue the conversation with Omnibot to refine the recommendations.&lt;/i&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="280" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry width="10" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-4" value="&lt;h1&gt;Chat Page: 1&lt;/h1&gt;&lt;p&gt;Make the chat front and center&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry y="960" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-5" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=7;" parent="1" vertex="1">
+          <mxGeometry x="320" y="1550" width="960" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-7" value="Hi! I&#39;m Omnibot" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" parent="1" vertex="1">
+          <mxGeometry x="320" y="1030" width="960" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-9" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=72;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="760" y="920" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-11" value="" style="endArrow=none;html=1;rounded=0;fontSize=40;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="PmzNDFpxscOfxV4MDq_8-5" target="PmzNDFpxscOfxV4MDq_8-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="1550" as="sourcePoint" />
+            <mxPoint x="840" y="1330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-12" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=40;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="1230" y="1730" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-13" value="Hi Omnibot, my name is Sam" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=24;" parent="1" vertex="1">
+          <mxGeometry x="340" y="1570" width="920" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-15" value="Font size for chatbot and user are the same" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="50" y="1210" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-16" value="&lt;h1&gt;The Midnight Library&lt;/h1&gt;&lt;p&gt;Author: Matt Haig&lt;/p&gt;&lt;p&gt;Year: 2020&lt;/p&gt;&lt;p&gt;Genre: Literary Fiction / Fantasy&lt;/p&gt;&lt;p&gt;Summary: Nora Seed finds herself in a library between life and death, where each book represents a different version of her life. She must explore the roads not taken — different careers, relationships, and choices — to discover what makes life truly worth living.&lt;/p&gt;&lt;p&gt;Recommendation: Based on your interest in stories about second chances and existential self-discovery, this novel&#39;s blend of philosophical depth and emotional warmth makes it a near-perfect match for your reading profile.&lt;/p&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="1640" y="920" width="360" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-17" value="&lt;h1&gt;Never Let Me Go&lt;/h1&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Author: Kazuo Ishiguro&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Year: 2005&lt;/p&gt;&lt;p&gt;Genre: Literary Fiction / Dystopian&lt;/p&gt;&lt;p&gt;Summary: Told through the quiet reminiscences of Kathy H., this novel follows three friends raised at an idyllic English boarding school, slowly revealing the deeply unsettling truth about their existence and what society has planned for them.&lt;/p&gt;&lt;p&gt;Recommendation: You mentioned preferring books that linger with you long after the last page — Ishiguro&#39;s restrained prose and devastating emotional undercurrent make this exactly that kind of read.&lt;/p&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="1640" y="1240" width="360" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-18" value="&lt;h1&gt;Piranesi&lt;/h1&gt;&lt;p&gt;Author: Susanna Clarke&lt;/p&gt;&lt;p&gt;Year: 2020&lt;/p&gt;&lt;p&gt;Genre: Fantasy / Mystery&lt;/p&gt;&lt;p&gt;Summary: Piranesi lives in a vast, labyrinthine House filled with endless halls, statues, and tidal seas. As he pieces together the truth of his existence from his own journals, reality becomes increasingly strange and wondrous.&lt;/p&gt;&lt;p&gt;Recommendation: Given your affinity for introspective narratives and a touch of the surreal, Piranesi&#39;s dreamlike mystery and compact, elegant structure should resonate strongly with you.&lt;/p&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="1640" y="1560" width="360" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-19" value="&lt;h1&gt;A Gentleman in Moscow&lt;/h1&gt;&lt;p&gt;Author: Amor Towles&lt;/p&gt;&lt;p&gt;Year: 2016&lt;/p&gt;&lt;p&gt;Genre: Historical Fiction&lt;/p&gt;&lt;p&gt;Summary: Count Alexander Rostov is sentenced to house arrest in a luxury Moscow hotel by a Bolshevik tribunal. Confined within its walls for decades, he finds purpose, love, and an entire world within what could have been a prison.&lt;/p&gt;&lt;p&gt;Recommendation: Your conversation touched on themes of finding meaning in constraint and the richness of inner life — this book is practically written for that sensibility.&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="1640" y="1840" width="360" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="PmzNDFpxscOfxV4MDq_8-20" value="&lt;h1&gt;Flowers for Algernon&lt;/h1&gt;&lt;p&gt;Author: Daniel Keyes&lt;/p&gt;&lt;p&gt;Year: 1966&lt;/p&gt;&lt;p&gt;Genre: Science Fiction / Literary Fiction&lt;/p&gt;&lt;p&gt;Summary: Charlie Gordon, a man with an intellectual disability, undergoes an experimental procedure that dramatically raises his IQ. Told through his own journal entries, the novel tracks his transformation — and its heartbreaking consequences.&lt;/p&gt;&lt;p&gt;Recommendation: You expressed interest in books that challenge assumptions about intelligence and identity. Charlie&#39;s shifting perspective makes this one of the most emotionally honest explorations of what it means to be human in the genre.&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="1640" y="2120" width="360" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="I3-QEv9HnVN0CEWvL3PU-1" target="PmzNDFpxscOfxV4MDq_8-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-1" value="User can click this button or presss enter to send prompt to OmniBot" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="1715" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="I3-QEv9HnVN0CEWvL3PU-2" target="PmzNDFpxscOfxV4MDq_8-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-2" value="Placeholder for Omnibot logo" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="870" y="935" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-5" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=72;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="280" y="1800" width="1040" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-6" value="&lt;h1&gt;Chat Page: 2&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry y="1860" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-7" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=7;" vertex="1" parent="1">
+          <mxGeometry x="320" y="2450" width="960" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-8" value="Hi Sam! What kind of books have you enjoyed recently?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1930" width="960" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-9" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=72;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="760" y="1820" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-10" value="" style="endArrow=none;html=1;rounded=0;fontSize=40;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="I3-QEv9HnVN0CEWvL3PU-7" target="I3-QEv9HnVN0CEWvL3PU-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="2450" as="sourcePoint" />
+            <mxPoint x="840" y="2230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-11" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=40;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="2630" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-12" value="&lt;font color=&quot;#cccccc&quot;&gt;Respond here&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="340" y="2470" width="920" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-13" value="After user sends prompt, Omnibot responds" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="50" y="2110" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-18" value="Placeholder text in the user input box" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="70" y="2470" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-52" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=72;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="-1320" y="900" width="1040" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-54" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=7;" vertex="1" parent="1">
+          <mxGeometry x="-1280" y="1550" width="960" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-55" value="Hi! I&#39;m Omnibot" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="-1280" y="1030" width="960" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-56" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=72;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="-840" y="920" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-57" value="" style="endArrow=none;html=1;rounded=0;fontSize=40;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" source="I3-QEv9HnVN0CEWvL3PU-54" target="I3-QEv9HnVN0CEWvL3PU-54" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1450" y="1550" as="sourcePoint" />
+            <mxPoint x="-760" y="1330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-58" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=40;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="-370" y="1730" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-59" value="Hi Omnibot, my name is Sam" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="-1260" y="1570" width="920" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-65" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=72;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="-1320" y="1800" width="1040" height="900" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-67" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=7;" vertex="1" parent="1">
+          <mxGeometry x="-1280" y="2450" width="960" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-68" value="Hi Sam! What kind of books have you enjoyed recently?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="-1280" y="1930" width="960" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-69" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=72;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="-840" y="1820" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-70" value="" style="endArrow=none;html=1;rounded=0;fontSize=40;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" source="I3-QEv9HnVN0CEWvL3PU-67" target="I3-QEv9HnVN0CEWvL3PU-67" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1450" y="2450" as="sourcePoint" />
+            <mxPoint x="-760" y="2230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-71" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=40;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="-370" y="2630" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="I3-QEv9HnVN0CEWvL3PU-72" value="&lt;font color=&quot;#cccccc&quot;&gt;Respond here&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=24;" vertex="1" parent="1">
+          <mxGeometry x="-1260" y="2470" width="920" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="aBcrcb1TLpI1To-HumuW" name="agent-backend">
+    <mxGraphModel dx="1581" dy="1087" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GWtzCWjQPLFzB_lwqaIf-9" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-260" y="650" width="810" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="GWtzCWjQPLFzB_lwqaIf-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-260" y="320" width="810" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="GWtzCWjQPLFzB_lwqaIf-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-380" y="-100" width="640" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="lJY5epmsm3EuKLIO2xQp-4" target="lJY5epmsm3EuKLIO2xQp-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="lJY5epmsm3EuKLIO2xQp-4" target="lJY5epmsm3EuKLIO2xQp-25" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-4" value="Conversation History" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;verticalAlign=top;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-110" y="50" width="120" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="lJY5epmsm3EuKLIO2xQp-1" target="lJY5epmsm3EuKLIO2xQp-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-1" value="Agent" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="70" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-3" target="lJY5epmsm3EuKLIO2xQp-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-3" value="User" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-260" y="100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-5" target="lJY5epmsm3EuKLIO2xQp-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-5" value="Chat Instructions&lt;br&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;i&gt;Example: Ask what books they&#39;ve enjoyed before and why. Dive into their specific tastes.&lt;/i&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="70" y="-50" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-8" target="lJY5epmsm3EuKLIO2xQp-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-8" value="Prompt" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="-80" y="100" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-11" target="lJY5epmsm3EuKLIO2xQp-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-11" value="Response" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+          <mxGeometry x="-80" y="200" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-14" target="lJY5epmsm3EuKLIO2xQp-16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-14" value="Agent" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="90" y="490" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-15" target="lJY5epmsm3EuKLIO2xQp-23" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GWtzCWjQPLFzB_lwqaIf-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="lJY5epmsm3EuKLIO2xQp-23" target="lJY5epmsm3EuKLIO2xQp-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-15" value="Book API" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="400" y="490" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-16" target="lJY5epmsm3EuKLIO2xQp-15" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-16" value="Search Query" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="280" y="490" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-19" target="lJY5epmsm3EuKLIO2xQp-14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-19" value="Search Instructions&lt;br&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;i&gt;Example: Based on this conversation history construct a search query to find books the user might be interested in.&lt;/i&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="90" y="340" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="GWtzCWjQPLFzB_lwqaIf-7" target="lJY5epmsm3EuKLIO2xQp-25" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GWtzCWjQPLFzB_lwqaIf-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-23" target="GWtzCWjQPLFzB_lwqaIf-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-23" value="Search Results" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
+          <mxGeometry x="430" y="570" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-25" target="lJY5epmsm3EuKLIO2xQp-31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-25" value="Agent" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="90" y="790" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-29" target="lJY5epmsm3EuKLIO2xQp-25" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-29" value="Instructions&lt;br&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;i&gt;Example: Based on this conversation history and search results, recommend 5 books to the user. Include a specific explanation for each book citing from the conversation history&lt;/i&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=top;" parent="1" vertex="1">
+          <mxGeometry x="35" y="660" width="230" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=12;" parent="1" source="lJY5epmsm3EuKLIO2xQp-31" target="lJY5epmsm3EuKLIO2xQp-33" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-31" value="Book Recommendations&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Title&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Author&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Year&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Genre&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Summary&lt;/span&gt;&lt;br&gt;**Explanation**" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;verticalAlign=top;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="90" y="910" width="120" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-33" value="User" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="-110" y="945" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lJY5epmsm3EuKLIO2xQp-36" value="&lt;h1&gt;Step 1: Chat&lt;/h1&gt;&lt;p&gt;Omnibot starts a coversation with the user about books and their specific tastes and builds up a conversation history&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="-370" y="-90" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="GWtzCWjQPLFzB_lwqaIf-3" value="&lt;h1&gt;Step 2: Search&lt;/h1&gt;&lt;p&gt;Agent constructs a search query of a book-related API. The Agent is ulimately looking for at least 5 books that it assesses are a good fit for the user (i.e., if the API doesn&#39;t return 5 results, the agent attempts different search queries until this quota is reached)&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="-250" y="330" width="190" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="GWtzCWjQPLFzB_lwqaIf-4" value="&lt;h1&gt;Step 3: Recommend&lt;/h1&gt;&lt;p&gt;Given the context of these search results and the user conversation, the Agent then returns five book recommendations. Each recommended book is displayed with the Agent&#39;s explanation based on the user&#39;s conversation history.&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="-250" y="660" width="191" height="226" as="geometry" />
+        </mxCell>
+        <mxCell id="GWtzCWjQPLFzB_lwqaIf-7" value="Final Search Results&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Title&lt;br&gt;Author&lt;br&gt;Year&lt;br&gt;Genre&lt;br&gt;Summary&lt;br&gt;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;verticalAlign=top;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="400" y="755" width="120" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hj_SsS1JsLp1rKNQY6_G-1" target="hj_SsS1JsLp1rKNQY6_G-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-1" value="Conversation History" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;verticalAlign=top;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1126" y="478" width="120" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="hj_SsS1JsLp1rKNQY6_G-2" target="hj_SsS1JsLp1rKNQY6_G-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-2" value="Agent" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1293" y="563" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hj_SsS1JsLp1rKNQY6_G-3" target="hj_SsS1JsLp1rKNQY6_G-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-3" value="Search Instructions&lt;br&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;&lt;i&gt;Based on this conversation history list 10 book titles that you think meet the user&#39;s preferences.&lt;/i&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1293" y="408" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="hj_SsS1JsLp1rKNQY6_G-4" target="hj_SsS1JsLp1rKNQY6_G-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-4" value="Book Title" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1472" y="563" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="hj_SsS1JsLp1rKNQY6_G-5" target="hj_SsS1JsLp1rKNQY6_G-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-5" value="Open Library API" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1578" y="563" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="hj_SsS1JsLp1rKNQY6_G-6" target="hj_SsS1JsLp1rKNQY6_G-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-6" value="Book Result" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1744" y="563" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="hj_SsS1JsLp1rKNQY6_G-13" target="hj_SsS1JsLp1rKNQY6_G-15" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-13" value="Conversation History" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;verticalAlign=top;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1126" y="799" width="120" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="hj_SsS1JsLp1rKNQY6_G-15" target="hj_SsS1JsLp1rKNQY6_G-19" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-15" value="Agent" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1293" y="884" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="hj_SsS1JsLp1rKNQY6_G-17" target="hj_SsS1JsLp1rKNQY6_G-15" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-17" value="Search Instructions&lt;br&gt;&lt;i style=&quot;font-weight: 400;&quot;&gt;&amp;nbsp;Based on this conversation history construct a search query to find books the user might be interested in.&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1293" y="729" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="hj_SsS1JsLp1rKNQY6_G-19" target="hj_SsS1JsLp1rKNQY6_G-21" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-19" value="Book Title" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="1472" y="884" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="hj_SsS1JsLp1rKNQY6_G-21" target="hj_SsS1JsLp1rKNQY6_G-22" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-21" value="Open Library API" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1578" y="884" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="hj_SsS1JsLp1rKNQY6_G-22" target="hj_SsS1JsLp1rKNQY6_G-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-22" value="Book Result" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1744" y="884" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="hj_SsS1JsLp1rKNQY6_G-23" value="Book Results" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1857" y="680" width="60" height="138" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
