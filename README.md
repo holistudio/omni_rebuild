@@ -5,14 +5,20 @@ An agent that makes book recommendations based on conversations with you about y
 ## 🛠️ Set Up
 
 0. Prerequisites:
-   - Claude API key
+   - Claude API key OR Ollama
    - Node.js
 
     Create a `.env` file in `backend/`:
 
     ```env
-    ANTHROPIC_API_KEY=sk-ant-your-key-here
     LLM_PROVIDER=anthropic
+    ANTHROPIC_API_KEY=sk-ant-your-key-here
+
+    # or
+
+    LLM_PROVIDER=ollama
+    OLLAMA_MODEL=llama3.1
+    OLLAMA_BASE_URL=http://localhost:XXXX
     ```
     
 1. Start a virtual environment
