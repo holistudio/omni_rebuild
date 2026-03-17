@@ -39,6 +39,7 @@ def recommend_node(state: dict) -> dict:
 
     # insert search results into context window
     prompt = RECOMMEND_SYSTEM_PROMPT.format(search_context=search_context)
+    print(f"Final Recommendation Prompt:\n{prompt}")
 
     # append system message
     messages = [SystemMessage(content=prompt)] + state["messages"]
