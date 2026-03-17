@@ -22,6 +22,7 @@ def fetch_work_data(work_key: str) -> dict:
     url = f"https://openlibrary.org/{work_key}.json"
     try:
         resp = requests.get(url, headers=HEADERS, timeout=10)
+        print(resp.url + "\n")
         
         resp.raise_for_status() # raise exception immediately on HTTP error
 
@@ -51,7 +52,7 @@ def search_books(query: str, limit: int = 10) -> list[dict]:
         "fields": "key,title,author_name,first_publish_year"
     }
     resp = requests.get(SEARCH_URL, params=params, headers=HEADERS)
-    print(resp.url) # uncomment for debugging
+    print(resp.url + "\n") # uncomment for debugging
     
     resp.raise_for_status() # raise exception immediately on HTTP error
 
