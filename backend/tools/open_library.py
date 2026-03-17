@@ -40,7 +40,7 @@ def fetch_work_data(work_key: str) -> dict:
         return empty
 
 
-def search_books(query: str, limit: int = 10) -> list[dict]:
+def search_books(query: str, author: str, limit: int = 10) -> list[dict]:
     """
     query: search query
     limit: max number of search results to get back
@@ -71,8 +71,8 @@ def search_books(query: str, limit: int = 10) -> list[dict]:
         subjects = work_data.get("subjects",[])[:5]
         genre = subjects[0] if subjects else "N/A"
 
-        # only include books that have summaries
-        if summary:
+        # only include books that have summaries and match authors
+        if summary and author in authors:
             books.append({
                 "title": title,
                 "author": ", ".join(authors) if isinstance(authors, list) else authors,
@@ -90,5 +90,5 @@ def search_books(query: str, limit: int = 10) -> list[dict]:
 def lookup_single_book(title: str, author: str) -> dict | None:
     # search for a single book by title and author
     query = f"{title} {author}"
-    results = search_books(query, limit=3) 
+    results = search_books(query, author, limit=3) 
     return results[0] if results else None
