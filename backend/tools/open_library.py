@@ -19,7 +19,7 @@ def fetch_work_data(work_key: str) -> dict:
     if not work_key:
         return empty
     
-    url = f"https://openlibrary.org/works/{work_key}.json"
+    url = f"https://openlibrary.org/{work_key}.json"
     try:
         resp = requests.get(url, headers=HEADERS, timeout=10)
         
