@@ -13,6 +13,12 @@ def get_llm():
             temperature=0.7,
             max_tokens=4096,
         )
-    # TODO: elif provider == "ollama":
+    elif provider == "ollama":
+        from langchain_ollama import ChatOllama
+        return ChatOllama(
+            model=os.getenv("OLLAMA_MODEL", "llama3.1"),
+            base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
+            temperature=0.7,
+        )
     else:
         raise ValueError(f"Unknown LLM_PROVIDER: {provider}")
