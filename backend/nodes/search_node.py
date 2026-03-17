@@ -43,14 +43,14 @@ def _generate_book_suggestions(llm, state: dict, titles_already_tried: list[str]
     response = llm.invoke(messages)
 
     content = response.content.strip()
-    print(content)
+    print(f"Before parsing:\n {content}")
 
     # if the LLM responds with a JSON code snippet wrapper,
     # ex: ```json\n[{"title": "Piranesi", "author": "Susanna Clarke"}]\n```
     if content.startswith("```"):
         # remove so that only the list is kept ex: [{"title": "Piranesi", "author": "Susanna Clarke"}]
         content = content.split("\n", 1)[1].rsplit("```", 1)[0].strip()
-    print(content)
+    print(f"Pass 1:\n {content}")
 
     try:
         suggestions = json.loads(content)
@@ -60,8 +60,8 @@ def _generate_book_suggestions(llm, state: dict, titles_already_tried: list[str]
         end = content.find("]") + 1
         if start != -1 and end > start:
             try:
-                print(content)
-                suggestions = json.loads(content)
+                print(f"Pass 2:\n {content}")
+                suggestions = json.loads(content[start:end])
             except json.JSONDecodeError:
                 return []
         else:
@@ -84,6 +84,7 @@ def search_node(state: dict) -> dict:
     suggestions = _generate_book_suggestions(llm, state, titles_already_tried)
 
     # Search Open Library for books
+    print("\nSearching...\n")
     new_books = []
     for suggestion in suggestions:
         title = suggestion["title"]
@@ -94,8 +95,10 @@ def search_node(state: dict) -> dict:
         if title in existing_results:
             continue
 
+        print(f"Looking up {title}, {author}...\n")
         book = lookup_single_book(title, author)
         if book and book["title"] not in existing_results:
+            print(f"Found!\n {book}")
             new_books.append(book)
             existing_results.add(book["title"])
     
