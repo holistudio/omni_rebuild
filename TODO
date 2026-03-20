@@ -13,7 +13,11 @@
 ## Code Base
 - [x] Backend Flask Template
 - [x] Front-end Template
-- [ ] Open Library API
-- [ ] Open Library MCP (branch)
+- [x] Open Library API
+- [x] Test Open Library API
+- [x] Branch API search version
+
 - [ ] Fetch/Load Open Library into Local DB
 - [ ] RAG w/ Local DB
+- [ ] Open Library MCP (branch)
+- [ ] Re-configure Graph to Fix UI Display Issue "Great, I understand what you're into, let me look up some books..."
