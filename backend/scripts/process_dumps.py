@@ -13,7 +13,7 @@ OUTPUT_PATH = os.path.join("data", "books_corpus.json")
 WORKS_DUMP = os.path.join(DUMPS_DIR, f"ol_dump_works_{DUMPS_DATE}.txt.gz")
 AUTHORS_DUMP = os.path.join(DUMPS_DIR, f"ol_dump_authors_{DUMPS_DATE}.txt.gz")
 
-MAX_BOOKS = 100_000
+MAX_BOOKS = 50_000
 
 # minimum character length of descriptions allowed in corpus
 MIN_DESC_LENGTH = 20
@@ -65,7 +65,6 @@ def build_author_lookup() -> dict[str, str]:
 
             if count % 1_000_000 == 0:
                 print(f".  ({(time.time()-start_time):.2f}) Processed {count:,} author records, {len(authors):,} names collected...")
-                break
 
     print(f".  Done ({(time.time()-start_time):.2f}): {count:,} authors scanned")
     print(f".  {line_errors:,} txt line errors, {record_errors:,} record type errors, {parse_errors:,} JSON parsing errors, {unknown_authors:,} unknown authors found.")
@@ -95,7 +94,7 @@ def extract_author_keys(data: dict) -> list[str]:
             author_keys.append(entry["key"])
     return author_keys
 
-def process_works() -> list[dict]:
+def process_works(author_lookup: dict[str, str]) -> list[dict]:
     print(f"\nProcessing works from WORKS_DUMP...\n")
     start_time = time.time()
     if not os.path.exists(WORKS_DUMP):
@@ -118,8 +117,8 @@ def process_works() -> list[dict]:
         for line in f:
             count += 1
 
-            if count >= MAX_BOOKS:
-                print(f"\n.  Reached {MAX_BOOKS:,} book cap, stopping early")
+            if len(corpus) >= MAX_BOOKS:
+                print(f"\n.   Reached {MAX_BOOKS:,} book cap, stopping early")
                 break
 
             try:
@@ -178,11 +177,11 @@ def process_works() -> list[dict]:
             except (json.JSONDecodeError, IndexError):
                 errors += 1
                 continue
-            if count % 5_000_000 == 0:
+            if count % 100_000 == 0:
                 print(f".  ({(time.time()-start_time):.2f}) Processed {count:,} records with {len(corpus)} books added...")
 
     print(f"\n.   Done ({(time.time()-start_time):.2f}): {len(corpus):,} books collected from {count:,} works records")
-    print(f".   {line_errors:,} txt line errors, {record_errors:,} record type errors, {parse_errors:,} JSON parsing errors, {no_title:,} no titles found, {short_desc:,} short descriptions found.\n")
+    print(f".   {line_errors:,} txt line errors, {record_errors:,} record type errors, {parse_errors:,} JSON parsing errors, {no_title:,} no titles found, {short_desc:,} short/no descriptions found.\n")
     return corpus
 
 if __name__ == "__main__":
