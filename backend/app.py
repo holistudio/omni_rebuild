@@ -96,6 +96,8 @@ def chat():
     # determine the current phase
     phase = result.get("phase", "chatting")
     
+    print(f"\nLast Response: {last_response}, {"[READY_TO_SEARCH]" in last_response}\nPhase:{phase}\n")
+    
     # compose response
     recommendations_url = None
 
@@ -105,6 +107,7 @@ def chat():
         recommendations_url = f"recommendations.html?session_id={session_id}"
         display_response = f'Great, <a href="{recommendations_url}">here</a> are my recommendations for you!'
     elif "[READY_TO_SEARCH]" in last_response:
+        print('\n!! GOT HERE !!\n')
         phase = "searching"
         display_response = "Great, I understand what you're into, let me look up some books..."
     
