@@ -86,3 +86,4 @@ logs/
  
 # --- draw.io ---
 *.bkp
+/backend/data
