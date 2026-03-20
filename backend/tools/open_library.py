@@ -58,6 +58,8 @@ def search_books(query: str, author: str, limit: int = 10) -> list[dict]:
 
     raw_docs = resp.json().get("docs", []) # results are in "docs" key
 
+    time.sleep(0.35) # stay with 3 req/sec rate limit
+
     books = []
     for doc in raw_docs:
         work_key = doc.get("key", "") # example: "/works/OL27448W"
@@ -91,4 +93,5 @@ def lookup_single_book(title: str, author: str) -> dict | None:
     # search for a single book by title and author
     query = f"{title} {author}"
     results = search_books(query, author, limit=3) 
+    time.sleep(0.35) # stay with 3 req/sec rate limit
     return results[0] if results else None
