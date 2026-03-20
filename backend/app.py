@@ -6,6 +6,8 @@ from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 
 from graph import build_graph, OmnibotState
 
+from storage import save_data
+
 app = Flask(__name__)
 CORS(app)
 
@@ -106,7 +108,20 @@ def chat():
         phase = "searching"
         display_response = "Great, I understand what you're into, let me look up some books..."
     
-    # TODO: save JSON files
+    # save latest conversation/search/recommendations to JSON files
+    serialized_messages = [
+        {
+            "role": "human" if isinstance(m, HumanMessage) else "ai",
+            "content": m.content
+        } for m in result["messages"]
+    ]
+    save_data(session_id, "conversations", serialized_messages)
+
+    if result.get("search_results"):
+        save_data(session_id, "search_results", result["search_results"])
+
+    if result.get("recommendations"):
+        save_data(session_id, "recommendations", result["recommendations"])
 
     print({
         "session_id": session_id,
