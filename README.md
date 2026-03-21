@@ -20,6 +20,8 @@ An agent that makes book recommendations based on conversations with you about y
     OLLAMA_MODEL=llama3.1
     OLLAMA_BASE_URL=http://localhost:XXXX
     ```
+
+    (if using Ollama, make sure it is running in the background via `ollama serve` in separate terminal)
     
 1. Start a virtual environment
 
