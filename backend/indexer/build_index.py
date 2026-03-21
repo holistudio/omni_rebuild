@@ -31,14 +31,18 @@ def build_documents(corpus: list[dict]) -> list[Document]:
     return documents
 
 if __name__=="__main__":
+    print(f"Loading corpus from {CORPUS_PATH}...")
     with open(CORPUS_PATH) as f:
         corpus = json.load(f)
+    print(f".   Loaded {len(corpus)} books.")
     
     # set LlamaIndex global settings for embedding model and indexing
+    print(f"Loading embedding model: {EMBED_MODEL}...")
     embed_model = HuggingFaceEmbedding(model_name=EMBED_MODEL)
     Settings.embed_model = embed_model
     Settings.llm = None
 
+    print("Converting to LlamaIndex documents...")
     documents = build_documents(corpus) 
 
     # get embedding dimension of model
@@ -48,8 +52,11 @@ if __name__=="__main__":
     faiss_index = faiss.IndexFlatL2(EMBED_DIM)
     
     # construct FAISS index
+    print("Constructing FAISS index...")
     vector_store = FaissVectorStore(faiss_index=faiss_index)
     storage_context = StorageContext.from_defaults(vector_store=vector_store)
+
+    print(f"Embedding {len(documents)} documents (this may take a few minutes)...")
     index = VectorStoreIndex.from_documents(
         documents=documents,
         storage_context=storage_context,
@@ -59,3 +66,5 @@ if __name__=="__main__":
     # save locally
     os.makedirs(INDEX_DIR, exist_ok=True)
     index.storage_context.persist(persist_dir=INDEX_DIR)
+    print(f"\nIndex built and saved to {INDEX_DIR}")
+    print(f"Files: {os.listdir(INDEX_DIR)}")
