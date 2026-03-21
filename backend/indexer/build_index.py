@@ -10,7 +10,7 @@ INDEX_DIR =  os.path.join("data", "vector_index")
 
 EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
-def build_document(corpus: list[dict]) -> list[Document]:
+def build_documents(corpus: list[dict]) -> list[Document]:
     documents = []
     for book in corpus:
         subjects_str = ", ".join(book.get("subjects",[]))
@@ -35,3 +35,5 @@ if __name__=="__main__":
     # set LlamaIndex global settings for embedding model and indexing
     Settings.embed_model = HuggingFaceEmbedding(model_name=EMBED_MODEL)
     Settings.llm = None
+
+    documents = build_documents(corpus) 
