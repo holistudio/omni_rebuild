@@ -22,6 +22,8 @@ MIN_DESC_LENGTH = 20
 def build_ratings_lookup() -> dict[str, float]:
     print("Processing ratings from RATINGS_DUMP...\n")
     start_time = time.time()
+
+    # build a lookup table recording individual user ratings of each book/work
     ratings = {}
     count = 0
     with gzip.open(RATINGS_DUMP, "rt", encoding="utf-8", errors="replace") as f:
@@ -37,15 +39,22 @@ def build_ratings_lookup() -> dict[str, float]:
                 ratings[work_key] = [rating]
             if count % 100_000 == 0:
                 print(f".  ({(time.time()-start_time):.2f}) Processed {count:,} rating records)")
+    
+    # filter out books with insufficient ratings
     final_count = 0
     final_ratings = {}
     for key in ratings:
         stars = ratings[key]
+        
+        # work must have more than one user rating
         if len(stars) > 1:
             avg_rating = sum(stars)/len(stars)
+
+            # average rating must be above 3/5 stars
             if avg_rating >= 3.0:
                 final_ratings[key]= avg_rating
                 final_count += 1
+
     print(f"Total rating records: {count}")
     print(f"Final records: {final_count}")
     return final_ratings
@@ -117,7 +126,7 @@ def extract_author_keys(data: dict) -> list[str]:
     for entry in data.get("authors", []):
         author_ref = entry.get("author")
         if isinstance(author_ref, dict):
-            # assum standard nested dict format
+            # assume standard nested dict format
             key = author_ref.get("key", "")
             if key:
                 author_keys.append(key)
@@ -180,6 +189,8 @@ def process_works(author_lookup: dict[str, str], rating_lookup: dict[str, float]
                     short_desc += 1
                     continue
 
+                # if work does not have an entry in rating lookup,
+                # it does not have sufficient ratings (> 1 user rating, >=3/5 stars)
                 avg_rating = rating_lookup.get(key)
                 if not avg_rating:
                     continue
@@ -221,8 +232,6 @@ def process_works(author_lookup: dict[str, str], rating_lookup: dict[str, float]
     return corpus
 
 if __name__ == "__main__":
-    
-
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
 
     # build author lookup table

@@ -42,7 +42,7 @@ if __name__=="__main__":
     Settings.embed_model = embed_model
     Settings.llm = None
 
-    print("Converting to LlamaIndex documents...")
+    print("\nConverting to LlamaIndex documents...")
     documents = build_documents(corpus) 
 
     # get embedding dimension of model
@@ -52,7 +52,7 @@ if __name__=="__main__":
     faiss_index = faiss.IndexFlatL2(EMBED_DIM)
     
     # construct FAISS index
-    print("Constructing FAISS index...")
+    print("\nConstructing FAISS index...")
     vector_store = FaissVectorStore(faiss_index=faiss_index)
     storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
