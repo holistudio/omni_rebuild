@@ -211,7 +211,7 @@ def process_works(author_lookup: dict[str, str], rating_lookup: dict[str, float]
                     "open_library_key": key,
                 })
             except (json.JSONDecodeError, IndexError):
-                errors += 1
+                parse_errors += 1
                 continue
             if count % (MAX_BOOKS//10) == 0:
                 print(f".  ({(time.time()-start_time):.2f}) Processed {count:,} records with {len(corpus):,} books added...")
