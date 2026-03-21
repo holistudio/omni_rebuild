@@ -51,7 +51,7 @@ def build_ratings_lookup() -> dict[str, float]:
     return final_ratings
 
 def build_author_lookup() -> dict[str, str]:
-    print(f"Processing authors from AUTHORS_DUMP...\n")
+    print("Processing authors from AUTHORS_DUMP...\n")
     start_time = time.time()
     if not os.path.exists(AUTHORS_DUMP):
         print(f".  ERROR: Open Library Authors dump not found at {AUTHORS_DUMP}")
@@ -127,11 +127,11 @@ def extract_author_keys(data: dict) -> list[str]:
     return author_keys
 
 def process_works(author_lookup: dict[str, str], rating_lookup: dict[str, float]) -> list[dict]:
-    print(f"\nProcessing works from WORKS_DUMP...\n")
+    print("\nProcessing works from WORKS_DUMP...\n")
     start_time = time.time()
     if not os.path.exists(WORKS_DUMP):
         print(f"ERROR: Open Library Works dump not found at {WORKS_DUMP}")
-        print(f"Make sure to download it first via: https://openlibrary.org/developers/dumps")
+        print("Make sure to download it first via: https://openlibrary.org/developers/dumps")
         sys.exit(1)
     
     corpus = []
@@ -214,7 +214,7 @@ def process_works(author_lookup: dict[str, str], rating_lookup: dict[str, float]
                 errors += 1
                 continue
             if count % (MAX_BOOKS//10) == 0:
-                print(f".  ({(time.time()-start_time):.2f}) Processed {count:,} records with {len(corpus)} books added...")
+                print(f".  ({(time.time()-start_time):.2f}) Processed {count:,} records with {len(corpus):,} books added...")
 
     print(f"\n.   Done ({(time.time()-start_time):.2f}): {len(corpus):,} books collected from {count:,} works records")
     print(f".   {line_errors:,} txt line errors, {record_errors:,} record type errors, {parse_errors:,} JSON parsing errors, {no_title:,} no titles found, {short_desc:,} short/no descriptions found.\n")
@@ -239,5 +239,5 @@ if __name__ == "__main__":
     print(f"  {len(corpus):,} books collected")
 
     if corpus:
-        print(f"\nSample record:")
+        print("\nSample record:")
         print(json.dumps(corpus[0], indent=2))
