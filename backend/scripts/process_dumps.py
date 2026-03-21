@@ -126,7 +126,7 @@ def extract_author_keys(data: dict) -> list[str]:
             author_keys.append(entry["key"])
     return author_keys
 
-def process_works(author_lookup: dict[str, str]) -> list[dict]:
+def process_works(author_lookup: dict[str, str], rating_lookup: dict[str, float]) -> list[dict]:
     print(f"\nProcessing works from WORKS_DUMP...\n")
     start_time = time.time()
     if not os.path.exists(WORKS_DUMP):
@@ -180,6 +180,10 @@ def process_works(author_lookup: dict[str, str]) -> list[dict]:
                     short_desc += 1
                     continue
 
+                avg_rating = rating_lookup.get(key)
+                if not avg_rating:
+                    continue
+
                 subjects = data.get("subjects", [])
                 if not isinstance(subjects, list):
                     if isinstance(subjects, str):
@@ -209,7 +213,7 @@ def process_works(author_lookup: dict[str, str]) -> list[dict]:
             except (json.JSONDecodeError, IndexError):
                 errors += 1
                 continue
-            if count % 100_000 == 0:
+            if count % (MAX_BOOKS//10) == 0:
                 print(f".  ({(time.time()-start_time):.2f}) Processed {count:,} records with {len(corpus)} books added...")
 
     print(f"\n.   Done ({(time.time()-start_time):.2f}): {len(corpus):,} books collected from {count:,} works records")
@@ -217,20 +221,23 @@ def process_works(author_lookup: dict[str, str]) -> list[dict]:
     return corpus
 
 if __name__ == "__main__":
+    
+
+    os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+
+    # build author lookup table
+    author_lookup = build_author_lookup()
+
+    # build ratings lookup table
     ratings = build_ratings_lookup()
 
-    # os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+    # create final works corpus with complete author names
+    corpus = process_works(author_lookup, ratings)
+    with open(OUTPUT_PATH, "w") as f:
+        json.dump(corpus, f, indent=2)
+    print(f"\nCorpus saved to {OUTPUT_PATH}")
+    print(f"  {len(corpus):,} books collected")
 
-    # # build author lookup table
-    # author_lookup = build_author_lookup()
-
-    # # create final works corpus with complete author names
-    # corpus = process_works(author_lookup)
-    # with open(OUTPUT_PATH, "w") as f:
-    #     json.dump(corpus, f, indent=2)
-    # print(f"\nCorpus saved to {OUTPUT_PATH}")
-    # print(f"  {len(corpus):,} books collected")
-
-    # if corpus:
-    #     print(f"\nSample record:")
-    #     print(json.dumps(corpus[0], indent=2))
+    if corpus:
+        print(f"\nSample record:")
+        print(json.dumps(corpus[0], indent=2))
