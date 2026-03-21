@@ -1,4 +1,5 @@
 import uuid
+import os
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -14,6 +15,11 @@ CORS(app)
 # compile LangGraph at startup
 omnibot_graph = build_graph()
 
+# preload vector index at start-up
+if os.path.exists(os.path.join("data", "vector_index")):
+    from tools.vector_search import _load_index
+    _load_index()
+    
 # conversation storage, keys=session_id, vals=states
 sessions: dict[str, OmnibotState] = {}
 
