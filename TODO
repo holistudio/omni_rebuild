@@ -16,8 +16,15 @@
 - [x] Open Library API
 - [x] Test Open Library API
 - [x] Branch API search version
-
-- [ ] Fetch/Load Open Library into Local DB
-- [ ] RAG w/ Local DB
+- [x] Fetch/Load Open Library into Local DB
+- [x] RAG w/ Local DB
 - [ ] Open Library MCP (branch)
+- [ ] Adjust look and feel of front-end
+
+## Documentation
+- [ ] Diagrams of pipeline/logic
+- [ ] Update README
+
+## Future Work
 - [ ] Re-configure Graph to Fix UI Display Issue "Great, I understand what you're into, let me look up some books..."
+- [ ] Combine local RAG with Open Library Search API/MCP tools
