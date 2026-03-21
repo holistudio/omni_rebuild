@@ -18,16 +18,15 @@ based on other preferences mentioned in the conversation."""
 def search_node(state: dict) -> dict:
     llm = get_llm()
 
-    rag_msg = SystemMessage(content=RAG_SYSTEM_PROMPT)
     context = f"Previous search attempts: {state['search_attempts_tried']}\n"
     context += f"Number of books found so far: {state['num_books_found']}"
-
-    messages = [rag_msg] + state["messages"] + [
-        SystemMessage(content=context)
-    ]
+    rag_msg = SystemMessage(content=RAG_SYSTEM_PROMPT + "\n" + context)
+    
+    messages = [rag_msg] + state["messages"]
 
     query_response = llm.invoke(messages)
     query_text = query_response.content.strip().strip('"')
+    print(f"\nLLM search query:\n{query_text}\n")
 
     # search FAISS Index for books
     print("\nSearching...")
@@ -40,6 +39,7 @@ def search_node(state: dict) -> dict:
     existing_titles = {b["title"] for b in state["search_results"]}
     unique_new = [b for b in new_books if b["title"] not in existing_titles]
     all_results = state["search_results"] + unique_new
+    print(f"\n Vector Search Results:\n{[(b["title"], b["author"]) for b in all_results]}")
 
     return {
         "search_results": all_results,

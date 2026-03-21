@@ -81,7 +81,7 @@ def recommend_node(state: dict) -> dict:
             "content": m.content
         } for m in state["messages"]
     ]
-    print(f"Final LLM message:\n{prompt}\n{serialized_messages}")
+    print(f"Final LLM prompt:\n{prompt}\n{serialized_messages}\n")
 
     # get LLM response
     response = llm.invoke(messages)
