@@ -5,7 +5,7 @@ An agent that makes book recommendations based on conversations with you about y
 ## 🛠️ Set Up
 
 0. Prerequisites:
-   - Claude API key OR Ollama
+   - Claude API key OR Ollama/llama3.1
    - Node.js
 
     Create a `.env` file in `backend/`:
@@ -19,10 +19,13 @@ An agent that makes book recommendations based on conversations with you about y
     LLM_PROVIDER=ollama
     OLLAMA_MODEL=llama3.1
     OLLAMA_BASE_URL=http://localhost:XXXX
+
+    # Open Library API request header
+    CONTACT_EMAIL=email@example.com
     ```
 
-    (if using Ollama, make sure it is running in the background via `ollama serve` in separate terminal)
-    
+   Download *works, authors, ratings (txt.gz files)* [Open Library data dumps](https://openlibrary.org/developers/dumps) to `backend/data/dumps/` 
+
 1. Start a virtual environment
 
     ```bash
@@ -36,8 +39,21 @@ An agent that makes book recommendations based on conversations with you about y
     cd backend
     (uv) pip install -r requirements.txt
     ```
+3. Create a local vector index of Open Library book summaries (in `backend/` directory)
 
-3. Set up frontend
+    ```bash
+    python scripts/process_dumps.py
+    ```
+    
+    This will generate a `books_corpus.json` file in the `data` folder. To convert this corpus into a FAISS vector index, run:
+
+    ```bash
+    python indexer/build_index.py
+    ```
+    
+    The FAISS index will then be saved to `data/vector_index/`.
+
+4. Set up frontend
 
     ```bash
     cd frontend
@@ -48,13 +64,15 @@ An agent that makes book recommendations based on conversations with you about y
 
 ## 🧑‍💻 Usage
 
-0. Make sure you are in this directory (`omni_rebuild`) and activate the virtual environment in **two terminals**
+0. If using Ollama, make sure it is running in the background via `ollama serve` in separate terminal
+
+1. Make sure you are in this directory (`omni_rebuild`) and activate the virtual environment in **two terminals**
    
    ```bash
    conda activate omnibot
    ```
 
-1. Terminal 1: Start Flask server backend
+2. Terminal 1: Start Flask server backend
 
     ```bash
     cd backend
@@ -63,11 +81,12 @@ An agent that makes book recommendations based on conversations with you about y
 
    Flask starts on `http://localhost:5000`
 
-2. Terminal 2: Start frontend
+3. Terminal 2: Start frontend
 
     ```bash
     cd frontend
     python -m http.server 3000
     ```
 
-3. Open browser to `http://localhost:3000`
+4. Open browser to `http://localhost:3000`
+5. Start chatting with Omnibot!
