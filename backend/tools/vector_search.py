@@ -13,6 +13,7 @@ _index = None
 
 
 def _load_index() -> VectorStoreIndex:
+    print("Loading vector index...")
     # load the FAISS index if it hasn't been loaded yet in cache
     global _index
     if _index is not None:
@@ -26,6 +27,7 @@ def _load_index() -> VectorStoreIndex:
         persist_dir=INDEX_DIR,
     )
     _index = load_index_from_storage(storage_context=storage_context)
+    print("Vector index loaded.")
     return _index
 
 def vector_search_books(query: str, top_k: int = 20) -> list[dict]:
