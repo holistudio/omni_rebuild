@@ -24,3 +24,8 @@ def build_document(corpus: list[dict]) -> list[Document]:
         doc = Document(text=text, metadata=metadata)
         documents.append(doc)
     return documents
+
+if __name__=="__main__":
+    with open(CORPUS_PATH) as f:
+        corpus = json.load(f)
+    
