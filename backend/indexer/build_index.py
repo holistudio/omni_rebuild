@@ -1,11 +1,14 @@
 import json
 import os
 
-from llama_index.core import Document
+from llama_index.core import Document, Settings
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
 # assumes pwd = "./backend" NOT "./backend/indexer"
 CORPUS_PATH = os.path.join("data", "books_corpus.json")
 INDEX_DIR =  os.path.join("data", "vector_index")
+
+EMBED_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 def build_document(corpus: list[dict]) -> list[Document]:
     documents = []
@@ -29,3 +32,6 @@ if __name__=="__main__":
     with open(CORPUS_PATH) as f:
         corpus = json.load(f)
     
+    # set LlamaIndex global settings for embedding model and indexing
+    Settings.embed_model = HuggingFaceEmbedding(model_name=EMBED_MODEL)
+    Settings.llm = None
