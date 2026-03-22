@@ -66,11 +66,13 @@ async def _get_books_async(suggestions: list[dict]):
             # MCP handshake
             await session.initialize()
 
+            print("\nSearching...\n")
             for suggestion in suggestions:
                 title = suggestion["title"]
                 author = suggestion["author"]
                 
                 try:
+                    print(f"   [MCP] Looking up {title}, {author}...\n")
                     # MCP returns CallToolResult
                     result = await session.call_tool(
                         "get_book_by_title", {"title": title}
