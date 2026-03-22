@@ -3,6 +3,7 @@ import json
 from langchain_core.messages import SystemMessage
 from config import get_llm
 from tools.open_library import lookup_single_book
+from tools.open_library_mcp import search_books_mcp
 
 SEARCH_SYSTEM_PROMPT = """Based on the conversation history below, suggest exactly 10 
 real books the user might enjoy. Choose well-known, published books that are likely 
@@ -84,26 +85,16 @@ def search_node(state: dict) -> dict:
     # ask LLM for book suggestions
     suggestions = _generate_book_suggestions(llm, state, titles_already_tried)
 
-    # Search Open Library for books
-    print("\nSearching...\n")
-    new_books = []
-    for suggestion in suggestions:
-        title = suggestion["title"]
-        author = suggestion["author"]
+    # track book titles already searched before
+    titles_already_tried.extend(s["title"] for s in suggestions)
 
-        titles_already_tried.append(title)
-
-        if title in existing_results:
-            continue
-
-        print(f"Looking up {title}, {author}...\n")
-        book = lookup_single_book(title, author)
-        if book and book["title"] not in existing_results:
-            print(f"Found!\n {book}")
-            new_books.append(book)
-            existing_results.add(book["title"])
-    
-    all_results = state["search_results"] + new_books
+    # look up new book titles via MCP
+    suggestions_to_search = [
+        s for s in suggestions if s["title"] not in existing_results
+    ]
+    new_books = search_books_mcp(suggestions_to_search)
+    unique_new_books = [b for b in new_books if b["title"] not in existing_results]
+    all_results = state["search_results"] + unique_new_books
 
     return {
         "search_results": all_results,
