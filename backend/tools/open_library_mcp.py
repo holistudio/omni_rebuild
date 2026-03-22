@@ -7,6 +7,11 @@ import requests
 from mcp import StdioServerParameters, ClientSession
 from mcp.client.stdio import stdio_client
 
+NODE_PATH = os.getenv(
+    "NODE_PATH",
+    os.path.expanduser("usr/bin/node")
+)
+
 MCP_SERVER_PATH = os.getenv(
     "MCP_OPEN_LIBRARY_PATH",
     os.path.expanduser("~/mcp-open-library/build/index.js")
@@ -53,7 +58,7 @@ def _fetch_work_data(work_key: str) -> dict:
 
 async def _get_books_async(suggestions: list[dict]):
     server_params = StdioServerParameters(
-        command="node",
+        command=NODE_PATH,
         args=[MCP_SERVER_PATH]
     )
 
