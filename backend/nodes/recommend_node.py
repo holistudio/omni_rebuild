@@ -71,22 +71,22 @@ def recommend_node(state: dict) -> dict:
 
     # insert search results into context window
     prompt = RECOMMEND_SYSTEM_PROMPT.format(search_context=search_context)
-    # print(f"Final Recommendation Prompt:\n{prompt}")
+    print(f"\nFinal Recommendation Prompt:\n{prompt}")
 
     # append system message
     messages = [SystemMessage(content=prompt)] + state["messages"]
-    serialized_messages = [
-        {
-            "role": "human" if isinstance(m, HumanMessage) else "ai",
-            "content": m.content
-        } for m in state["messages"]
-    ]
-    print(f"Final LLM message:\n{prompt}\n{serialized_messages}")
+    # serialized_messages = [
+    #     {
+    #         "role": "human" if isinstance(m, HumanMessage) else "ai",
+    #         "content": m.content
+    #     } for m in state["messages"]
+    # ]
+    # print(f"Final LLM message:\n{prompt}\n{serialized_messages}")
 
     # get LLM response
     response = llm.invoke(messages)
     content = response.content.strip()
-    print(f"Final LLM response:\n{content}")
+    print(f"\nFinal LLM response:\n{content}")
 
     # parse the LLM response as a JSON
     try:
