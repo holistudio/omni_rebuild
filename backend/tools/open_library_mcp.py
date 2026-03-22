@@ -82,6 +82,7 @@ async def _get_books_async(suggestions: list[dict]):
                     result = await session.call_tool(
                         "get_book_by_title", {"title": title}
                     )
+                    # print(f"   {result}\n")
 
                     raw = result.content[0].text if result.content else "[]"
                     hits = json.loads(raw)
@@ -96,7 +97,7 @@ async def _get_books_async(suggestions: list[dict]):
                     returned_authors = top.get("authors", [])
                     if not _author_match(author, returned_authors):
                         print(
-                            f"   [MCP] Author mismatch — '{title}': "
+                            f"   [MCP] Author mismatch — '{title} by {author}' vs '{top.get("title","no_title")}': "
                             f"expected '{author}', got {returned_authors}"
                         )
                         continue
