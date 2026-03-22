@@ -54,6 +54,16 @@ html, body {
   max-width: 560px;
 }
 
+#bot-message a {
+  color: #546B8E;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#bot-message a:hover {
+  text-decoration: underline;
+}
+
 /* Input wrapper — textarea + footer with send button */
 .input-wrapper {
   flex-shrink: 0;
