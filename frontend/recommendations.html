@@ -13,9 +13,9 @@
 
     html, body {
       min-height: 100%;
-      background: #ffffff;
+      background: #FEF5E5;
       font-family: 'Georgia', 'Times New Roman', serif;
-      color: #1a1a1a;
+      color: #462D00;
     }
 
     .recommendations-container {
@@ -30,6 +30,7 @@
       margin-bottom: 40px;
       border-bottom: 1.5px solid #ccc;
       padding-bottom: 16px;
+      color: #462D00;
     }
 
     .book-card {
@@ -46,11 +47,12 @@
       font-size: 22px;
       font-weight: bold;
       margin-bottom: 6px;
+      color: #462D00;
     }
 
     .book-meta {
       font-size: 14px;
-      color: #555;
+      color: #6b4c1e;
       margin-bottom: 4px;
     }
 
@@ -58,19 +60,30 @@
       font-size: 15px;
       line-height: 1.6;
       margin-top: 12px;
-      color: #2a2a2a;
+      color: #462D00;
     }
 
     .book-recommendation {
       font-size: 15px;
       line-height: 1.6;
       margin-top: 10px;
-      color: #444;
+      color: #546B8E;
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+    }
+
+    .rec-logo {
+      height: 1em;
+      width: auto;
+      flex-shrink: 0;
+      position: relative;
+      top: 0.1em;
     }
 
     .loading-message {
       font-size: 18px;
-      color: #888;
+      color: #8a6a3a;
       text-align: center;
       margin-top: 80px;
     }
@@ -149,7 +162,7 @@
           html += `<p class="book-summary">Summary: ${escapeHtml(rec.summary)}</p>`;
         }
         if (rec.recommendation) {
-          html += `<p class="book-recommendation">Recommendation: ${escapeHtml(rec.recommendation)}</p>`;
+          html += `<p class="book-recommendation"><img src="assets/logo.png" class="rec-logo" alt="" />${escapeHtml(rec.recommendation)}</p>`;
         }
 
         html += "</div>";
