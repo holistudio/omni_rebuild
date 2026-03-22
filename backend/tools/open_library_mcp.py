@@ -91,41 +91,46 @@ async def _get_books_async(suggestions: list[dict]):
                         print(f"   [MCP] No results for {title}")
                         continue
 
-                    top = hits[0]
+                    top10 = hits[:10]
 
-                    # validate author matches
-                    returned_authors = top.get("authors", [])
-                    if not _author_match(author, returned_authors):
-                        print(
-                            f"   [MCP] Author mismatch — '{title} by {author}' vs '{top.get("title","no_title")}': "
-                            f"expected '{author}', got {returned_authors}"
-                        )
-                        continue
+                    # try the first 10 search results and find the result with:
+                    # - correct title and author match
+                    # - work data shows the book has a description
+                    for top in top10:
+                        # validate author matches
+                        returned_authors = top.get("authors", [])
+                        if not _author_match(author, returned_authors):
+                            print(
+                                f"   [MCP] Author mismatch — '{title} by {author}' vs '{top.get("title","no_title")}': "
+                                f"expected '{author}', got {returned_authors}"
+                            )
+                            continue
 
-                    # look up work for book description
-                    work_key = top.get("open_library_work_key", "")
-                    if not work_key:
-                        print(f"   [MCP] No work key returned for: '{title}'")
-                        continue
+                        # look up work for book description
+                        work_key = top.get("open_library_work_key", "")
+                        if not work_key:
+                            print(f"   [MCP] No work key returned for: '{title}'")
+                            continue
 
-                    work_data = _fetch_work_data(work_key)
-                    if not work_data["description"]:
-                        print(f"   [OpenLib] No description for: '{title}' ({work_key})")
-                        continue
+                        work_data = _fetch_work_data(work_key)
+                        if not work_data["description"]:
+                            print(f"   [OpenLib] No description for: '{title}' ({work_key})")
+                            continue
 
-                    subjects = work_data.get("subjects",[])[:5]
-                    genre = subjects[0] if subjects else "N/A"
+                        subjects = work_data.get("subjects",[])[:5]
+                        genre = subjects[0] if subjects else "N/A"
 
-                    books.append({
-                        "title": top.get("title", title),
-                        "author": ", ".join(returned_authors) if returned_authors else author,
-                        "year": top.get("first_publish_year", "N/A"),
-                        "genre": genre,
-                        "summary": work_data["description"],
-                        "open_library_key": work_key,
-                    })
+                        books.append({
+                            "title": top.get("title", title),
+                            "author": ", ".join(returned_authors) if returned_authors else author,
+                            "year": top.get("first_publish_year", "N/A"),
+                            "genre": genre,
+                            "summary": work_data["description"],
+                            "open_library_key": work_key,
+                        })
 
-                    print(f"   [OK]  {top.get('title', title)} collected!")
+                        print(f"   [OK]  {top.get('title', title)} collected!\n\n")
+                        break
 
                     time.sleep(0.35)
                 except json.JSONDecodeError as e:
