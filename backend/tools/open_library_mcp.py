@@ -27,7 +27,7 @@ def _author_match(llm_author: str, library_authors: list[str]) -> bool:
     
     # use the last name / surname as basis for detecting the match
     last_name = llm_author.strip().split()[-1].lower()
-    return any(last_name in a.lower for a in library_authors)
+    return any(last_name in a.lower() for a in library_authors)
 
 def _fetch_work_data(work_key: str) -> dict:
     empty = {"description": None, "subjects": []}
