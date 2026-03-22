@@ -2,6 +2,7 @@ import os
 import asyncio
 import json
 import time
+import requests
 
 from mcp import StdioServerParameters, ClientSession
 from mcp.client.stdio import stdio_client
@@ -22,6 +23,33 @@ def _author_match(llm_author: str, library_authors: list[str]) -> bool:
     # use the last name / surname as basis for detecting the match
     last_name = llm_author.strip().split()[-1].lower()
     return any(last_name in a.lower for a in library_authors)
+
+def _fetch_work_data(work_key: str) -> dict:
+    empty = {"description": None, "subjects": []}
+
+    if not work_key:
+        return empty
+    
+    url = f"https://openlibrary.org/{work_key}.json"
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=10)
+        print(resp.url + "\n")
+        
+        resp.raise_for_status() # raise exception immediately on HTTP error
+
+        data = resp.json()
+
+        # ensure description returned as string
+        description = data.get("description")
+        if isinstance(description, dict):
+            description = description.get("value", None)
+        
+        # get full list of subjects
+        subjects = data.get("subjects", [])
+        return {"description": description, "subjects": subjects}
+    except Exception as e:
+        print(f"   [OpenLib] Works API error for {work_key}: {e}")
+        return empty
 
 async def _get_books_async(suggestions: list[dict]):
     server_params = StdioServerParameters(
