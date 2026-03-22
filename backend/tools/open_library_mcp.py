@@ -15,6 +15,14 @@ HEADERS = {
     "User-Agent": f"ProjectOmnibot/1.0 ({os.environ.get('CONTACT_EMAIL', 'contact@example.com')})"
 }
 
+def _author_match(llm_author: str, library_authors: list[str]) -> bool:
+    if not library_authors:
+        return False
+    
+    # use the last name / surname as basis for detecting the match
+    last_name = llm_author.strip().split()[-1].lower()
+    return any(last_name in a.lower for a in library_authors)
+
 async def _get_books_async(suggestions: list[dict]):
     server_params = StdioServerParameters(
         command="node",
