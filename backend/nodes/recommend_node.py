@@ -20,7 +20,7 @@ For each book, provide a JSON array with objects containing:
 - "recommendation": a 2-3 sentence personalized explanation of WHY this book 
   is a good fit, referencing SPECIFIC things the user said in the conversation below.
 
-Return ONLY one valid JSON array. No markdown, no code fences, just the array."""
+Your response should consist of ONLY one valid JSON array. No markdown, no code fences, just the array."""
 
 def extract_recommendations(raw_content: str) -> list:
     recommendations = []
