@@ -19,8 +19,23 @@ An agent that makes book recommendations based on conversations with you about y
     LLM_PROVIDER=ollama
     OLLAMA_MODEL=llama3.1
     OLLAMA_BASE_URL=http://localhost:XXXX
+
+    # MCP
+    MCP_OPEN_LIBRARY_PATH=/path/to/mcp-open-library/
+    NODE_PATH=/path/to/node
     ```
     
+    Clone the [Open Library MCP](https://github.com/8enSmith/mcp-open-library)
+    - Recommended: clone to home directory
+
+    ```bash
+    cd ~
+    git clone https://github.com/8enSmith/mcp-open-library.git
+    cd mcp-open-library
+    npm install
+    npm run build
+    ```
+
 1. Start a virtual environment
 
     ```bash
