@@ -16,12 +16,14 @@ This project was motivated by the sense that people sometimes have very nuanced 
 
 <img src="./docs/03_RAG_search.png">
 
-0. Behind the scenes, a local vector index of book summaries, pulled from Open Library, is built with a *sentence embedding model*.
+0. Behind the scenes, a local vector index of book summaries, pulled from [Open Library](https://openlibrary.org/developers/dumps), is built with a *sentence embedding model*.
 1. System prompts steer the *LLM* to asked pointed questions about the user's taste and only stop the conversation after re-iterating back to the user their overall preferences and the user appears to agree.
 2. The user's conversation gets summarized into a text query by the *LLM*, which the sentence embedding model converts into a *query vector*.
-3. A list of books is then given back to the *LLM* based on which *index vectors* are closest to the *query vector*.
+3. A RAG-based search list of books is then given back to the *LLM* based on which *index vectors* are closest to the *query vector*.
 4. With this list of book summaries and the entire user conversation in its context window, the *LLM* picks 5 books and attaches its own recommendation explanation for each one.
 5. The final recommendations are then displayed to the user in a separate page.
+
+Open Library API and MCP variations of this pipeline were explored in [other](https://github.com/holistudio/omni_rebuild/tree/api_search) [branches](https://github.com/holistudio/omni_rebuild/tree/mcp_search).
 
 ## 🛠️ Set Up
 
