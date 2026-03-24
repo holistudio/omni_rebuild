@@ -9,7 +9,7 @@ This project was motivated by the sense that people sometimes have very nuanced 
 <img src="./docs/02_UX.png">
 
 1. The user and *LLM* start chatting about the user's preferences for books, previous works they enjoyed, specific themes/characters/pacing/etc.
-2. Before the conversation ends, the *LLM* summarizes back to the user a short description of what they are looking for in their next read. Only after the user agrees with this summary does the chat end starts the agentic search.
+2. Before the conversation ends, the *LLM* summarizes back to the user a short description of what they are looking for in their next read. Only after the user agrees with this summary does the chat end and starts the agentic search.
 3. The user is directed to another page of recommendations. Each book recommendation comes with a specific blurb by the *LLM* on why this book was recommended, tying back to specific moments in the user's conversation.
 
 ## 🤖 Backend
